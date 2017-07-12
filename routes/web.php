@@ -10,7 +10,7 @@ Route::get('import', 'routeController@import');
 // Functions Routes
 // Client Routes
 Route::get('client/{name}_asset', 'ClientController@assets');
-Route::get('client/{name}_{asset}/test', 'ClientController@test')
+Route::get('client/{name}_{asset}/test', 'ClientController@test');
 Route::get('client/{name}_{asset}/{test}/result', 'ClientController@result');
 
 // Asset Routes
