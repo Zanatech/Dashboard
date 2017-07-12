@@ -7,12 +7,12 @@ use App\Test;
 
 class TestController extends Controller
 {
-    public function test(){
+    public function show(){
         $tests = Test::all();
-    	return view('dashboard.result', compact('tests'));
+    	return view('dashboard.test', compact('tests'));
     }
 
-    public function show($id){
+    public function test($id){
         $test = Test::find($id);
         return view('dashboard.testdetail', compact('test'));
     }

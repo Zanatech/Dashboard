@@ -27,7 +27,7 @@
 			        			<td> {{ $client->id }} </td>
 			        			<td> {{ $client->name }} </td>
 			        			<td> {{ $client->created_at }} </td>
-			        			<td><a href="{{ URL::to('asset') }}">See all</a></td>
+			        			<td><a href="client/{{ $client->id }}">See all</a></td>
 			        		</tr>
 			        	@endforeach
 			        </tbody>

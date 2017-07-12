@@ -22,16 +22,14 @@
 			        </thead>
 
 			        <tbody>
-			        	<?php
-			        		foreach ($tests as $test) {
-			        			echo "<tr>";
-			        			echo "<td> $test->id </td>";
-			        			echo "<td> $test->name </td>";
-			        			echo "<td> $test->created_at </td>";
-			        			echo "<td><a>See all</a></td>";
-			        			echo "</tr>";
-			        		};
-			        	?>
+			        	@foreach ($tests as $test)
+			        		<tr>
+			        			<td> {{ $test->id }} </td>
+			        			<td> {{ $test->name }} </td>
+			        			<td> {{ $test->created_at }} </td>
+			        			<td><a href="test/{{ $test->id }}">See all</a></td>
+			        		</tr>
+			        	@endforeach
 			        </tbody>
 			      </table>
 

@@ -22,14 +22,6 @@
 			        </thead>
 
 			        <tbody>
-			        	<?php
-			        			echo "<tr>";
-			        			echo "<td> $test->id </td>";
-			        			echo "<td> $test->name </td>";
-			        			echo "<td> $test->created_at </td>";
-			        			echo "<td><a>See all</a></td>";
-			        			echo "</tr>";
-			        	?>
 			        </tbody>
 			      </table>
 

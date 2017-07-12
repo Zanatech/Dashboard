@@ -22,16 +22,14 @@
 			        </thead>
 
 			        <tbody>
-			        	<?php
-			        		foreach ($assets as $asset) {
-			        			echo "<tr>";
-			        			echo "<td> $asset->id </td>";
-			        			echo "<td> $asset->name </td>";
-			        			echo "<td> $asset->created_at </td>";
-			        			echo "<td><a>See all</a></td>";
-			        			echo "</tr>";
-			        		};
-			        	?>
+			        	@foreach ($assets as $asset)
+			        		<tr>
+			        			<td> {{ $asset->id }} </td>
+			        			<td> {{ $asset->name }} </td>
+			        			<td> {{ $asset->created_at }} </td>
+			        			<td><a href="asset/{{ $asset->id }}">See all</a></td>
+			        		</tr>
+			        	@endforeach
 			        </tbody>
 			      </table>
 
