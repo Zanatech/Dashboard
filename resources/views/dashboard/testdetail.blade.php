@@ -37,27 +37,53 @@
 	              <span class="card-title"></span>
 
 	              <table class="responsive-table">
-	              	<thead>
-	              		@foreach($columns as $column)
-	              			<th>{{ $column->Field }}</th>
-	              		@endforeach
-	              	</thead>
-	              	<tbody>
+			        <thead>
+			          <tr>
+			          		<th>Test Nro.</th>
+		              		<th>Insulation tested</th>
+		              		<th>Test mode</th>
+		              		<th>HV</th>
+		              		<th>Red</th>
+		              		<th>Blue</th>
+		              		<th>Gnd</th>
+		              		<th>Test kV</th>
+		              		<th>Capacitance C (pF)</th>
+		              		<th>Measured</th>
+		              		<th>@20°C</th>
+		              		<th>Corr Factor</th>
+		              		<th>mA</th>
+		              		<th>Watts</th>
+		              		<th>IR</th>
+			          </tr>
+			        </thead>
+
+			        <tbody>
 	              		@foreach($datas as $data)
 	              			<tr>
-	              				@foreach($data as $key => $value)
-	              					<td> {{ $value }} </td>
-	              				@endforeach
+	              				<td>{{ $data->id }}</td>
+	              				<td>{{ $data->insultest }}</td>
+	              				<td>{{ $data->textmodetxt }}</td>
+	              				<td>{{ $data->overalleng }}</td>
+	              				<td>{{ $data->overallgnd }}</td>
+	              				<td>{{ $data->overallgar }}</td>
+	              				<td>{{ $data->overallust }}</td>
+	              				<td>{{ $data->kv }}</td>
+	              				<td>{{ $data->cap }}</td>
+	              				<td>{{ $data->pf }}</td>
+	              				<td>{{ $data->pf_20 }}</td>
+	              				<td>{{ $data->corr }}</td>
+	              				<td>{{ $data->ma }}</td>
+	              				<td>{{ $data->watts }}</td>
+	              				<td>{{ $data->rating }}</td>
 	              			</tr>
 	              		@endforeach
-	              	</tbody>
+			        </tbody>
 			      </table>
 	            </div>
 	        </div>
-	        
-
 		@endif
 	    </div>
+	    @include('layouts.charts')   
 	</div>
 </section>
 

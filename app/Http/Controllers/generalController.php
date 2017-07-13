@@ -36,25 +36,4 @@ class generalController extends Controller
             dd($data);
 		}
     }
-
-    private function generateChart(){
-    	
-    	$capat = DB::select('SELECT insultest, cap FROM power_factors limit 3');
-        
-        foreach($capat as $capatrow){
-            $caps[] = $capatrow->cap;
-            $insultests[] = $capatrow->insultest;
-        }
-        
-        $chart = Charts::multi('bar', 'material')
-            ->title("Capacitancia - Devanado de alta tensión")
-            ->dimensions(0, 400)
-            ->template("material")
-            ->dataset($insultests[0], [$caps[0]])
-            ->dataset($insultests[1], [$caps[1]])
-            ->dataset($insultests[2], [$caps[2]])
-            ->labels(['Feb 2017']);   
-        
-        $charts[] = $chart;
-    }
 }

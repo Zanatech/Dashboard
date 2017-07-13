@@ -36,6 +36,7 @@
 	        </div>
 		@endif
 	    </div>
+	    @include('layouts.charts')
 	</div>
 </section>
 
