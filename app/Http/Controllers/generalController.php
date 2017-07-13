@@ -17,7 +17,7 @@ class generalController extends Controller
 			$path = Input::file('import_file')->getRealPath();
 			$data = Excel::load($path, function($reader) {})->get();
 
-			if(!empty($data) && $data->count()){
+			/*if(!empty($data) && $data->count()){
 				foreach ($data as $key => $value) {
 					$insert[] = ['insultest' => $value->insultest, 'testmodetxt' => $value->testmodetxt,
                                 'overalleng' => $value->overalleng,'overallgnd' => $value->overallgnd,
@@ -32,7 +32,8 @@ class generalController extends Controller
 					DB::table('power_factors')->insert($insert);
                     return view('dashboard.home', ['charts' => null]);
 				}
-			}
+			}*/
+            dd($data);
 		}
     }
 

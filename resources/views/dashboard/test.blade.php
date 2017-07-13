@@ -6,7 +6,7 @@
 	<div class="row">
 		<div class="col s12 m12">
 		@if(null !== $tests)
-			        <div class="card-panel">
+			<div class="card-panel">
 	            <div class="card-content">
 	              
 	              <span class="card-title"></span>
@@ -32,7 +32,6 @@
 			        	@endforeach
 			        </tbody>
 			      </table>
-
 	            </div>
 	        </div>
 		@endif
