@@ -6,7 +6,8 @@
 	<div class="row">
 		<div class="col s12 m12">
 		@if(null !== $assets)
-			        <div class="card-panel">
+		<div class="hide">{{ $i = 1}}</div>
+			<div class="card-panel">
 	            <div class="card-content">
 	              
 	              <span class="card-title"></span>
@@ -24,7 +25,7 @@
 			        <tbody>
 			        	@foreach ($assets as $asset)
 			        		<tr>
-			        			<td> {{ $asset->id }} </td>
+			        			<td> {{ $i++ }} </td>
 			        			<td> {{ $asset->name }} </td>
 			        			<td> {{ $asset->created_at }} </td>
 			        			<td><a href="asset/{{ $asset->id }}">See all</a></td>

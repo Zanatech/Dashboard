@@ -11,35 +11,95 @@ use Charts;
 class TestController extends Controller
 {
     public function show(){
-        $tests = Test::all();
-        $datas = PowerFactor::all();
 
-        $chart = Charts::multi('bar', 'highcharts')
-            ->colors(['#ff0000', '#ffffff', '#fff000']);
+        try {
+            DB::connection()->getPdo();
+        } catch (\Exception $e) {
+            return back();
+        }
+
+        $tests = Test::all();
 
         foreach ($tests as $test) {
             $dates[] = $test->created_at->toFormattedDateString();
-
-            $datas = PowerFactor::where('insultest','=',$test->id)->get();
-            //dd($datas);
-            foreach ($datas as $data) {
-                $dat[] = $data->cap;
-            }
-            $chart->dataset('', $dat);
         }
 
-        /*foreach ($datas as $data) {
-            $chart->dataset($data->insultest, [$data->cap]);
-        }*/
+        $capacitance = null;
+        $power_factors = null;
+        $power_factors20 = null;
+
+        $datas = PowerFactor::where('insultest','=','A')->get();
+        foreach ($datas as $data) {
+            $capacitance[] = $data->cap;
+            $power_factors[] = $data->pf;
+            $power_factors20[] = $data->pf_20;
+        }
+
+        $chart = Charts::multi('areaspline', 'highcharts')
+            ->title('Insulation -  A')
+            ->colors(['#F44336', '#2196F3', '#009688'])
+            ->labels($dates)
+            ->dataset('Capacitance', $capacitance)
+            ->dataset('Measured', $power_factors)
+            ->dataset('@20°C', $power_factors20);
+
+        $charts[] = $chart;
+
+        $capacitance = null;
+        $power_factors = null;
+        $power_factors20 = null;
+
+        $datas = PowerFactor::where('insultest','=','B')->get();
+        foreach ($datas as $data) {
+            $capacitance[] = $data->cap;
+            $power_factors[] = $data->pf;
+            $power_factors20[] = $data->pf_20;
+        }
+
+        $chart = Charts::multi('areaspline', 'highcharts')
+            ->title('Insulation - B')
+            ->colors(['#F44336', '#2196F3', '#009688'])
+            ->labels($dates)
+            ->dataset('Capacitance', $capacitance)
+            ->dataset('Measured', $power_factors)
+            ->dataset('@20°C', $power_factors20);
+
+        $charts[] = $chart;
+
+        $capacitance = null;
+        $power_factors = null;
+        $power_factors20 = null;
+        
+        $datas = PowerFactor::where('insultest','=','C')->get();
+        foreach ($datas as $data) {
+            $capacitance[] = $data->cap;
+            $power_factors[] = $data->pf;
+            $power_factors20[] = $data->pf_20;
+        }
+
+        $chart = Charts::multi('areaspline', 'highcharts')
+            ->title('Insulation - C')
+            ->colors(['#F44336', '#2196F3', '#009688'])
+            ->labels($dates)
+            ->dataset('Capacitance', $capacitance)
+            ->dataset('Measured', $power_factors)
+            ->dataset('@20°C', $power_factors20);
 
         $charts[] = $chart;
     	return view('dashboard.test', compact('tests', 'charts'));
     }
 
     public function test($id){
+
+        try {
+            DB::connection()->getPdo();
+        } catch (\Exception $e) {
+            return back();
+        }
+
         $test = Test::find($id);
         $columns = DB::select('SHOW COLUMNS FROM power_factors');
-        $datas = PowerFactor::all()->where('test_id','=',$id);
+        $datas = PowerFactor::all()->where('test_id','=',$id)->take(3);
 
         $chart = Charts::multi('bar', 'material')
             ->title("Capacitance C (pF)")
@@ -77,6 +137,7 @@ class TestController extends Controller
 
         $charts[] = $chart;
 
+        $datas = PowerFactor::all()->where('test_id','=',$id);
         return view('dashboard.testdetail', compact('test','columns','datas', 'charts'));
     }
 }

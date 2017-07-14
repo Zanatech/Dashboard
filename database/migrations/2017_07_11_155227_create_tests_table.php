@@ -17,6 +17,7 @@ class CreateTestsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('asset_id');
+            $table->date('test_date');
             $table->timestamps();
         });
     }

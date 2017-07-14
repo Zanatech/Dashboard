@@ -6,6 +6,7 @@
 	<div class="row">
 		<div class="col s12 m12">
 		@if(null !== $clients)
+		<div class="hide">{{ $i = 1}}</div>
 			<div class="card-panel">
 	            <div class="card-content">
 	              
@@ -24,7 +25,7 @@
 			        <tbody>
 			        	@foreach ($clients as $client)
 			        		<tr>
-			        			<td> {{ $client->id }} </td>
+			        			<td> {{ $i++ }} </td>
 			        			<td> {{ $client->name }} </td>
 			        			<td> {{ $client->created_at }} </td>
 			        			<td><a href="client/{{ $client->id }}">See all</a></td>

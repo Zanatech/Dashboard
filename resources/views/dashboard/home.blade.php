@@ -6,8 +6,8 @@
 <section>
 	<div class="row">
 	    <div class="col s6 m3">
-	        <div class="card blue-grey darken-1">
-	            <div class="card-content white-text">
+	        <div class="card ">
+	            <div class="card-content ">
 	              <span class="card-title">Card Title</span>
 
 	            </div>
@@ -25,8 +25,8 @@
 	        </div>
 	    </div>
 	    <div class="col s6 m3">
-	        <div class="card blue-grey darken-1">
-	            <div class="card-content white-text">
+	        <div class="card ">
+	            <div class="card-content ">
 	              <span class="card-title">Card Title</span>
 	                <?php
 	            $chart =  Charts::create('percentage', 'justgage')
@@ -47,8 +47,8 @@
 	        </div>
 	    </div>
 	    <div class="col s6 m3">
-	        <div class="card blue-grey darken-1">
-	            <div class="card-content white-text">
+	        <div class="card ">
+	            <div class="card-content ">
 	              <span class="card-title">Card Title</span>
 	              <p>I am a very simple card. I am good at containing small bits of information.
 	              I am convenient because I require little markup to use effectively.</p>
@@ -60,8 +60,8 @@
 	        </div>
 	    </div>
 	    <div class="col s6 m3">
-	        <div class="card blue-grey darken-1">
-	            <div class="card-content white-text">
+	        <div class="card ">
+	            <div class="card-content ">
 	              <span class="card-title">Card Title</span>
 	              <p>I am a very simple card. I am good at containing small bits of information.
 	              I am convenient because I require little markup to use effectively.</p>
@@ -74,8 +74,8 @@
 	    </div>
 
 	    <div class="col s12 m6">
-	        <div class="card blue-grey darken-1">
-	            <div class="card-content white-text">
+	        <div class="card ">
+	            <div class="card-content ">
 	              <span class="card-title">Card Title</span>
 	            <?php
 	            $chart = Charts::math('sin(x)', [0, 10], 0.2, 'line', 'highcharts');;
@@ -91,8 +91,8 @@
 	    </div>
 
 	    <div class="col s12 m6">
-	        <div class="card blue-grey darken-1">
-	            <div class="card-content white-text">
+	        <div class="card ">
+	            <div class="card-content ">
 	              <span class="card-title">Card Title</span>
 	            <?php
 	            $chart = Charts::create('pie', 'highcharts')
@@ -113,8 +113,8 @@
 	    </div>
 
 	    <div class="col s12 m6">
-	        <div class="card blue-grey darken-1">
-	            <div class="card-content white-text">
+	        <div class="card ">
+	            <div class="card-content ">
 	              <span class="card-title">Card Title</span>
 	            <?php
 	            $chart = Charts::create('line', 'highcharts')
@@ -136,8 +136,8 @@
 	    </div>
 
 	    <div class="col s12 m6">
-	        <div class="card blue-grey darken-1">
-	            <div class="card-content white-text">
+	        <div class="card ">
+	            <div class="card-content ">
 	            <span class="card-title">Card Title</span>
 	            <?php
 	            $chart = Charts::multi('areaspline', 'highcharts')
@@ -158,8 +158,8 @@
 	    </div>
 
 	    <div class="col s12 m12">
-	        <div class="card blue-grey darken-1">
-	            <div class="card-content white-text">
+	        <div class="card ">
+	            <div class="card-content ">
 	              <span class="card-title">Card Title</span>
 	              <table class="responsive-table">
 			        <thead>

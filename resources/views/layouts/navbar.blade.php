@@ -1,8 +1,8 @@
   
   <!-- Navbar -->
-  <nav class="light-blue " role="navigation">
+  <nav class="white " role="navigation">
     <div class="nav-wrapper">
-    	<a id="logo-container" href="#" class="brand-logo">Anxor Ingenieria</a>
+    	<a id="logo-container" href="#" class="brand-logo"><img class="center" width="50" src="/img/logo.png"></a>
 
     	<!-- Navbar - Not mobile -->
      	<ul class="right hide-on-med-and-down">
@@ -13,7 +13,7 @@
       	<ul id="nav-mobile" class="side-nav">
           @include('layouts.links')
       	</ul>
-      	<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      	<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons teal-text">menu</i></a>
     </div>
   </nav>
 

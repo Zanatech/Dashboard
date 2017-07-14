@@ -6,7 +6,7 @@
 	<div class="row">
 		<div class="col s12 m12">
 		@if(null !== $test || null !== $columns || null !== $datas)
-
+			<div class="hide">{{ $i = 1}}</div>
 			<div class="card-panel">
 	            <div class="card-content">
 	              
@@ -60,7 +60,7 @@
 			        <tbody>
 	              		@foreach($datas as $data)
 	              			<tr>
-	              				<td>{{ $data->id }}</td>
+	              				<td>{{ $i++ }}</td>
 	              				<td>{{ $data->insultest }}</td>
 	              				<td>{{ $data->textmodetxt }}</td>
 	              				<td>{{ $data->overalleng }}</td>

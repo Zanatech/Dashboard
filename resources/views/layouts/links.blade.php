@@ -3,4 +3,4 @@
 <li><a href="{{ URL::to('asset') }}" class="collection-item"><i class="material-icons left">list</i>Assets</a></li>
 <li><a href="{{ URL::to('test') }}" class="collection-item"><i class="material-icons left">receipt</i>Tests</a></li>
 <li><a href="{{ URL::to('import') }}" class="collection-item"><i class="material-icons left">import_export</i>Import from excel</a></li>
-<li><a href="{{ URL::to('home') }}" class="collection-item"><i class="material-icons left">note_add</i>Add new Test</a></li>
+<!--<li><a href="{{ URL::to('home') }}" class="collection-item"><i class="material-icons left">note_add</i>Add new Test</a></li>-->
