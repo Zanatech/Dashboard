@@ -20,6 +20,10 @@ class TestController extends Controller
 
         $tests = Test::all();
 
+        if (!count($tests)) {
+            return back();
+        }
+        
         foreach ($tests as $test) {
             $dates[] = $test->created_at->toFormattedDateString();
         }

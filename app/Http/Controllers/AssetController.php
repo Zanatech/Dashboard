@@ -32,6 +32,9 @@ class AssetController extends Controller
 
         $tests = Test::all()->where('asset_id','=', $id);
 
+        if (!count($test)) {
+            return back();
+        }
         foreach ($tests as $test) {
             $dates[] = $test->created_at->toFormattedDateString();
         }
