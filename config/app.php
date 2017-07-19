@@ -163,7 +163,6 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-
         /*
          * Package Service Providers...
          */
@@ -177,8 +176,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        ConsoleTVs\Charts\ChartsServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -228,10 +225,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Input' => Illuminate\Support\Facades\Input::class,
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
-
 
     ],
 
