@@ -22,6 +22,10 @@ class ComposerStaticInite04641fe44ff97e0ebe1f1445e2f1525
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'j' => 
+        array (
+            'jlawrence\\eos\\' => 14,
+        ),
         'X' => 
         array (
             'XdgBaseDir\\' => 11,
@@ -70,6 +74,10 @@ class ComposerStaticInite04641fe44ff97e0ebe1f1445e2f1525
             'League\\Flysystem\\' => 17,
             'Laravel\\Tinker\\' => 15,
         ),
+        'J' => 
+        array (
+            'Jenssegers\\Date\\' => 16,
+        ),
         'I' => 
         array (
             'Illuminate\\' => 11,
@@ -87,6 +95,7 @@ class ComposerStaticInite04641fe44ff97e0ebe1f1445e2f1525
         'C' => 
         array (
             'Cron\\' => 5,
+            'ConsoleTVs\\Charts\\' => 18,
             'Carbon\\' => 7,
         ),
         'A' => 
@@ -101,6 +110,10 @@ class ComposerStaticInite04641fe44ff97e0ebe1f1445e2f1525
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+        ),
+        'jlawrence\\eos\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jlawrence/eos/src',
         ),
         'XdgBaseDir\\' => 
         array (
@@ -198,6 +211,10 @@ class ComposerStaticInite04641fe44ff97e0ebe1f1445e2f1525
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
         ),
+        'Jenssegers\\Date\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jenssegers/date/src',
+        ),
         'Illuminate\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
@@ -221,6 +238,10 @@ class ComposerStaticInite04641fe44ff97e0ebe1f1445e2f1525
         'Cron\\' => 
         array (
             0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron',
+        ),
+        'ConsoleTVs\\Charts\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/consoletvs/charts/src',
         ),
         'Carbon\\' => 
         array (
@@ -279,6 +300,7 @@ class ComposerStaticInite04641fe44ff97e0ebe1f1445e2f1525
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
@@ -293,6 +315,15 @@ class ComposerStaticInite04641fe44ff97e0ebe1f1445e2f1525
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
+        'ConsoleTVs\\Charts\\Builder' => __DIR__ . '/..' . '/consoletvs/charts/src/Builder.php',
+        'ConsoleTVs\\Charts\\Builder\\Chart' => __DIR__ . '/..' . '/consoletvs/charts/src/Builder/Chart.php',
+        'ConsoleTVs\\Charts\\Builder\\Database' => __DIR__ . '/..' . '/consoletvs/charts/src/Builder/Database.php',
+        'ConsoleTVs\\Charts\\Builder\\Math' => __DIR__ . '/..' . '/consoletvs/charts/src/Builder/Math.php',
+        'ConsoleTVs\\Charts\\Builder\\Multi' => __DIR__ . '/..' . '/consoletvs/charts/src/Builder/Multi.php',
+        'ConsoleTVs\\Charts\\Builder\\MultiDatabase' => __DIR__ . '/..' . '/consoletvs/charts/src/Builder/MultiDatabase.php',
+        'ConsoleTVs\\Charts\\Builder\\Realtime' => __DIR__ . '/..' . '/consoletvs/charts/src/Builder/Realtime.php',
+        'ConsoleTVs\\Charts\\ChartsServiceProvider' => __DIR__ . '/..' . '/consoletvs/charts/src/ChartsServiceProvider.php',
+        'ConsoleTVs\\Charts\\Facades\\Charts' => __DIR__ . '/..' . '/consoletvs/charts/src/Facades/Charts.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/AbstractField.php',
@@ -1512,6 +1543,8 @@ class ComposerStaticInite04641fe44ff97e0ebe1f1445e2f1525
         'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/ConsoleColor.php',
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/InvalidStyleException.php',
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
+        'Jenssegers\\Date\\Date' => __DIR__ . '/..' . '/jenssegers/date/src/Date.php',
+        'Jenssegers\\Date\\DateServiceProvider' => __DIR__ . '/..' . '/jenssegers/date/src/DateServiceProvider.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
         'Laravel\\Tinker\\TinkerCaster' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerCaster.php',
         'Laravel\\Tinker\\TinkerServiceProvider' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerServiceProvider.php',
@@ -3196,6 +3229,13 @@ class ComposerStaticInite04641fe44ff97e0ebe1f1445e2f1525
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
+        'jlawrence\\eos\\AdvancedFunctions' => __DIR__ . '/..' . '/jlawrence/eos/src/AdvancedFunctions.php',
+        'jlawrence\\eos\\Graph' => __DIR__ . '/..' . '/jlawrence/eos/src/Graph.php',
+        'jlawrence\\eos\\Math' => __DIR__ . '/..' . '/jlawrence/eos/src/Math.php',
+        'jlawrence\\eos\\Matrix' => __DIR__ . '/..' . '/jlawrence/eos/src/Matrix.php',
+        'jlawrence\\eos\\Parser' => __DIR__ . '/..' . '/jlawrence/eos/src/Parser.php',
+        'jlawrence\\eos\\Stack' => __DIR__ . '/..' . '/jlawrence/eos/src/Stack.php',
+        'jlawrence\\eos\\Trig' => __DIR__ . '/..' . '/jlawrence/eos/src/Trig.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
         'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',

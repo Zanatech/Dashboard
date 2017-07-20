@@ -1,9 +1,7 @@
 <?php
 
 // Default Routes
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 // Login Routes
 Auth::routes();
