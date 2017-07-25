@@ -5,193 +5,61 @@
 <!-- Card Section  -->
 <section>
 	<div class="row">
-	    <div class="col s6 m3">
-	        <div class="card ">
-	            <div class="card-content ">
-	              <span class="card-title">Card Title</span>
-
+		<div class="card">
+            <div class="card-content">
+            <span class="card-title">Lista de Tareas</span>
+            </div>
+	    </div>
+	    <div class="col s12 m4">
+	        <div class="card red darken-2">
+	            <div class="card-content white-text">
+	              <span class="card-title">Importante!!</span>
+	              <p> Aqui va el dashboard, rellenar con datos de utilidad.
+	              Estos datos tienen que ser dedicidos cuales son los de mayor importancia</p>
 	            </div>
 	            <div class="card-action">
-	              <?php
-	            $chart = Charts::create('progressbar', 'progressbarjs')
-				    ->values([65,0,100])
-				    ->responsive(false)
-				    ->height(50)
-				    ->width(0);
-
-				echo $chart->render();
-	            ?>
 	            </div>
 	        </div>
 	    </div>
-	    <div class="col s6 m3">
-	        <div class="card ">
-	            <div class="card-content ">
-	              <span class="card-title">Card Title</span>
-	                <?php
-	            $chart =  Charts::create('percentage', 'justgage')
-				    ->title('My nice chart')
-				    ->elementLabel('My nice label')
-				    ->values([65,0,100])
-				    ->responsive(false)
-				    ->height(300)
-				    ->width(0);
-
-				echo $chart->render();
-	            ?>
+	    <div class="col s12 m4">
+	        <div class="card">
+	            <div class="card-content">
+	              <span class="card-title">Graficos de tendencia</span>
+	              <p>Rehacer lo graficos de tendencia en Seccion de [Test], de una forma
+	              mas limpia.</p>
 	            </div>
 	            <div class="card-action">
-	              <a href="#">This is a link</a>
-	              <a href="#">This is a link</a>
 	            </div>
 	        </div>
 	    </div>
-	    <div class="col s6 m3">
-	        <div class="card ">
-	            <div class="card-content ">
-	              <span class="card-title">Card Title</span>
-	              <p>I am a very simple card. I am good at containing small bits of information.
-	              I am convenient because I require little markup to use effectively.</p>
+	    <div class="col s12 m4">
+	        <div class="card">
+	            <div class="card-content">
+	              <span class="card-title">Formularios de tablas</span>
+	              <p>Realizar los formularios de insercion, actualizacion y eliminacion de datos.
+	              [User, Client, Asset, Job, Test]</p>
 	            </div>
 	            <div class="card-action">
-	              <a href="#">This is a link</a>
-	              <a href="#">This is a link</a>
 	            </div>
 	        </div>
-	    </div>
-	    <div class="col s6 m3">
-	        <div class="card ">
-	            <div class="card-content ">
-	              <span class="card-title">Card Title</span>
-	              <p>I am a very simple card. I am good at containing small bits of information.
-	              I am convenient because I require little markup to use effectively.</p>
+        </div>
+        <div class="col s12 m4">
+	        <div class="card">
+	            <div class="card-content">
+	              <span class="card-title">Validaciones</span>
+	              <p>Validacion de conexion a base de datos, URL, insercion de datos, actualizacion, roles de acceso</p>
 	            </div>
 	            <div class="card-action">
-	              <a href="#">This is a link</a>
-	              <a href="#">This is a link</a>
 	            </div>
 	        </div>
-	    </div>
-
-	    <div class="col s12 m6">
-	        <div class="card ">
-	            <div class="card-content ">
-	              <span class="card-title">Card Title</span>
-	            <?php
-	            $chart = Charts::math('sin(x)', [0, 10], 0.2, 'line', 'highcharts');;
-
-				echo $chart->render();
-	            ?>
+        </div>
+        <div class="col s12 m4">
+	        <div class="card">
+	            <div class="card-content">
+	              <span class="card-title">Implementacion de roles de usuario</span>
+	              <p>Permisos para accesos de ciertos datos, modificaciones.</p>
 	            </div>
 	            <div class="card-action">
-	              <a href="#">This is a link</a>
-	              <a href="#">This is a link</a>
-	            </div>
-	        </div>
-	    </div>
-
-	    <div class="col s12 m6">
-	        <div class="card ">
-	            <div class="card-content ">
-	              <span class="card-title">Card Title</span>
-	            <?php
-	            $chart = Charts::create('pie', 'highcharts')
-  						->title('My nice chart')
-		  				->labels(['First', 'Second', 'Third'])
-					  	->values([5,10,20])
-					  	->dimensions(1000,500)
-					  	->responsive(true);
-
-				echo $chart->render();
-	            ?>
-	            </div>
-	            <div class="card-action">
-	              <a href="#">This is a link</a>
-	              <a href="#">This is a link</a>
-	            </div>
-	        </div>
-	    </div>
-
-	    <div class="col s12 m6">
-	        <div class="card ">
-	            <div class="card-content ">
-	              <span class="card-title">Card Title</span>
-	            <?php
-	            $chart = Charts::create('line', 'highcharts')
-						    ->title('My nice chart')
-						    ->elementLabel('My nice label')
-						    ->labels(['First', 'Second', 'Third'])
-						    ->values([5,10,20])
-						    ->dimensions(1000,500)
-						    ->responsive(true);	
-
-				echo $chart->render();
-	            ?>
-	            </div>
-	            <div class="card-action">
-	              <a href="#">This is a link</a>
-	              <a href="#">This is a link</a>
-	            </div>
-	        </div>
-	    </div>
-
-	    <div class="col s12 m6">
-	        <div class="card ">
-	            <div class="card-content ">
-	            <span class="card-title">Card Title</span>
-	            <?php
-	            $chart = Charts::multi('areaspline', 'highcharts')
-						    ->title('My nice chart')
-						    ->colors(['#ff0000', '#ffffff'])
-						    ->labels(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday', 'Sunday'])
-						    ->dataset('John', [3, 4, 3, 5, 4, 10, 12])
-						    ->dataset('Jane',  [1, 3, 4, 3, 3, 5, 4]);;
-
-				echo $chart->render();
-	            ?>
-	            </div>
-	            <div class="card-action">
-	              <a href="#">This is a link</a>
-	              <a href="#">This is a link</a>
-	            </div>
-	        </div>
-	    </div>
-
-	    <div class="col s12 m12">
-	        <div class="card ">
-	            <div class="card-content ">
-	              <span class="card-title">Card Title</span>
-	              <table class="responsive-table">
-			        <thead>
-			          <tr>
-			              <th>Name</th>
-			              <th>Item Name</th>
-			              <th>Item Price</th>
-			          </tr>
-			        </thead>
-
-			        <tbody>
-			          <tr>
-			            <td>Alvin</td>
-			            <td>Eclair</td>
-			            <td>$0.87</td>
-			          </tr>
-			          <tr>
-			            <td>Alan</td>
-			            <td>Jellybean</td>
-			            <td>$3.76</td>
-			          </tr>
-			          <tr>
-			            <td>Jonathan</td>
-			            <td>Lollipop</td>
-			            <td>$7.00</td>
-			          </tr>
-			        </tbody>
-			      </table>
-	            </div>
-	            <div class="card-action">
-	              <a href="#">This is a link</a>
-	              <a href="#">This is a link</a>
 	            </div>
 	        </div>
 	    </div>

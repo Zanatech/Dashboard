@@ -8,10 +8,10 @@
    <div class="user-view">
 
     <div class="background">
-      <img src="img/background.jpg">
+      <img src="/img/background.jpg">
     </div>
 
-    <a href="#!user"><img class=" white responsive-img circle" src="img/logo.png"></a>
+    <a href="#!user"><img class=" white responsive-img circle" src="/img/logo.png"></a>
 
     <a href="#!name"><span class="white-text name">{{ Auth::user()->name }}</span></a>
 

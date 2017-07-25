@@ -4,8 +4,8 @@
 
 <section>
 	<div class="row">
-		@include('dashboard.table.clients')
 		@include('dashboard.table.assets')
+		@include('dashboard.table.jobs')
 	</div>
 </section>
 

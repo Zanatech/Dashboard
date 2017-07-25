@@ -7,8 +7,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>  
     <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <script src='/js/modernizr.js'></script>
-
+    
     <!-- AJAX  -->
     <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
     <script type='text/javascript' src='js/modernizr.js'></script>
