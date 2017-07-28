@@ -10,7 +10,7 @@
   padding: 0 15px;
 }
 .icon-block .material-icons {
-	font-size: inherit;
+  font-size: inherit;
 }
 
 header, body, main, footer {
@@ -18,8 +18,7 @@ header, body, main, footer {
 }
 
 @media only screen and (max-width : 992px) {
-  header,body, main, footer {
+  header, body, main, footer {
     padding-left: 0;
   }
 }
-
