@@ -38,6 +38,7 @@ return [
     |   - url
     |   - icon
     |   - icon_color
+    |   - role_access
     |   - submenu
     |
     */
@@ -45,41 +46,43 @@ return [
     'menu' => [
         'Main Navigation',
         [
-            'text'      => 'Home',
-            'icon'      => 'dashboard',
-            'icon_color'=> 'teal',
-            'url'       => 'home',
+            'text'          =>  'Home',
+            'icon'          =>  'dashboard',
+            'icon_color'    =>  'teal',
+            'url'           =>  'home',
         ],
         [
-            'text'      => 'Client',
-            'icon'      => 'contacts',
-            'icon_color'=> 'teal',
-            'url'       => 'clients'
+            'text'          =>  'Client',
+            'icon'          =>  'contacts',
+            'icon_color'    =>  'teal',
+            'url'           =>  'clients',
+            'role_access'   =>  '1'
         ],
         [
-            'text'      => 'Jobs',
-            'icon'      => 'assignment',
-            'icon_color'=> 'teal',
-            'url'       => 'jobs'
+            'text'          =>  'Jobs',
+            'icon'          =>  'assignment',
+            'icon_color'    =>  'teal',
+            'url'           =>  'jobs',
+            'role_access'   =>  '1'
         ],
         [
-            'text'      => 'Assets',
-            'icon'      => 'list',
-            'icon_color'=> 'teal',
-            'url'       => 'assets'
+            'text'          =>  'Assets',
+            'icon'          =>  'list',
+            'icon_color'    =>  'teal',
+            'url'           =>  'assets'
         ],
         [
-            'text'      => 'Tests',
-            'icon'      => 'receipt',
-            'icon_color'=> 'teal',
-            'url'       => 'tests'
+            'text'          =>  'Tests',
+            'icon'          =>  'receipt',
+            'icon_color'    =>  'teal',
+            'url'           =>  'tests'
         ],
         'General Options',
         [        
-            'text'      => 'Profile',
-            'icon'      => 'account_circle',
-            'icon_color'=> 'teal',
-            'url'       => '#'
+            'text'          =>  'Profile',
+            'icon'          =>  'account_circle',
+            'icon_color'    =>  'teal',
+            'url'           =>  '#'
         ]
     ],
 

@@ -5,7 +5,7 @@
         
         html
         {
-            background: #cfd8dc;
+            background: #0d47a1;
         }
 
         .row

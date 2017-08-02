@@ -8,11 +8,15 @@
 
 @section('body')
 
+	@if (!Auth::guest())
+	<!-- Nav bar -->
 	@include('layouts.partial.header')
+		
+		<!-- Side Nav -->
 		<ul id="slide-out" class="side-nav fixed collection with-header">
-		 @if (!Auth::guest())
-			 <div class="user-view">
 
+			<!-- Fast profile Information -->
+			 <div class="user-view">
 			    <div class="background">
 			      <img src="{{ asset('img/background.jpg') }}">
 			    </div>
@@ -27,11 +31,16 @@
 	    	    <form id="logout-form" action="{{ url(config('master.logout_url')) }}" method="POST" style="display: none;">
 				    {{ csrf_field() }}
 			    </form>
-
 		   </div>
-		 @endif
-			@each('layouts.partial.sidebar', config('master.menu'), 'item')
-		</ul>
-	@yield('content')
 
+		   <!-- Main menu generate -->
+			@each('layouts.partial.sidebar', config('master.menu'), 'item')
+
+		</ul>
+
+		<!-- Body -->
+		@yield('content')
+	@else
+		@include('layouts.letlogin')
+	@endif
 @stop
