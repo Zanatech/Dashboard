@@ -57,7 +57,11 @@
 	        <div class="card">
 	            <div class="card-content">
 	              <span class="card-title">Implementacion de roles de usuario</span>
-	              <p>Permisos para accesos de ciertos datos, modificaciones.</p>
+	              <p>Permisos para accesos de ciertos datos, modificaciones.
+
+	              Fork en el web.php
+	              Validaciones en cada archivo
+	              </p>
 	            </div>
 	            <div class="card-action">
 	            </div>

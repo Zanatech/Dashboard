@@ -1,41 +1,40 @@
-@if(isset($clients))
-@if(null !== $clients)
+@if(isset($clients) && !is_null($clients))
 	<div class="col s12 m12">
-		<div class="hide">{{ $i = 1}}</div>
-			<div class="card-panel">
-				<div class="card-content">
+		<div class="card-panel">
+			<div class="card-content">
 
-					<span class="card-title"></span>
+				<!-- Table -->
+				<table class="responsive-table">
 
-					<table class="responsive-table">
-						<thead>
-							<tr>
-								<th>Id</th>
-								<th>Name</th>
-								<th>Created at</th>
-								@if(!isset($assets))
-								<th>Assets</th>
-								@endif
-							</tr>
-						</thead>
+					<!-- Headers -->
+					<thead>
+						<tr>
+							<th>{{ trans('dashboard.client_id') }}</th>
+							<th>{{ trans('dashboard.client_name') }}</th>
+							<th>{{ trans('dashboard.client_created') }}</th>
+							@if(!isset($assets))
+							<th>{{ trans('dashboard.client_asset') }}</th>
+							@endif
+						</tr>
+					</thead>
 
-						<tbody>
+					<!-- DATA -->
+					<tbody>
 						@foreach ($clients as $client)
 							<tr>
 								<td> {{ $client->id }} </td>
 								<td> {{ $client->name }} </td>
 								<td> {{ $client->created_at }} </td>
 								@if(!isset($assets))
-								<td><a href="/client/{{ $client->id }}">See all</a></td>
+								<td><a href="/client/{{ $client->id }}">{{ trans('dashboard.see_all') }}</a></td>
 								@endif
 							</tr>
 						@endforeach
-						</tbody>
-					</table>
+					</tbody>
+					
+				</table>
 
-				</div>
 			</div>
+		</div>
 	</div>
 @endif
-@endif
-	    

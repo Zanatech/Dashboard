@@ -21,4 +21,5 @@ return [
     'send_password_reset_link'    => 'Send Password Reset Link',
     'error_404_message'           => 'It seems that the page you are looking for does not exist.',
     'guest_access'                => 'It looks like you have not logged in, please Log in',
+    'access_denied'                => 'You do not have the necessary level to access this content',
 ];

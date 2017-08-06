@@ -1,47 +1,48 @@
-@if(isset($jobs))
-@if(null !== $jobs)
-<div class="col s12 m12">
-	<div class="hide">{{ $i = 1}}</div>
-	<div class="card-panel">
-		<div class="card-content">
+@if(isset($jobs) && !is_null($jobs))
+	<div class="col s12 m12">
+		<div class="card-panel">
+			<div class="card-content">
 
-			<span class="card-title"></span>
+				<!-- Table -->
+				<table class="responsive-table">
 
-			<table class="responsive-table">
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Target Date</th>
-						<th>Created at</th>
-						<th>Updated at</th>
-						<th>Due date</th>
-						<th>Job complete</th>
-						<th>Invoice sent</th>
-						@if(!isset($tests))
-						<th>Show all</th>
-						@endif
-					</tr>
-				</thead>
+					<!-- Headers -->
+					<thead>
+						<tr>
+							<th>{{ trans('dashboard.job_id') }}</th>
+							<th>{{ trans('dashboard.job_target_date') }}</th>
+							<th>{{ trans('dashboard.job_created_at') }}</th>
+							<th>{{ trans('dashboard.job_updated_at') }}</th>
+							<th>{{ trans('dashboard.job_due_date') }}</th>
+							<th>{{ trans('dashboard.job_complete') }}</th>
+							<th>{{ trans('dashboard.job_invoice_sent') }}</th>
+							@if(!isset($tests))
+							<th>{{ trans('dashboard.show_all') }}</th>
+							@endif
+						</tr>
+					</thead>
 
-				<tbody>
-				@foreach ($jobs as $job)
-					<tr>
-						<td> {{ $i++ }} </td>
-						<td> {{ $job->target_date }} </td>
-						<td> {{ $job->created_at }} </td>
-						<td> {{ $job->updated_at }} </td>
-						<td> {{ $job->due_at }} </td>
-						<td> {{ $job->job_complete }} </td>
-						<td> {{ $job->invoice_sent }} </td>
-						@if(!isset($tests))
-						<td><a href="/job/{{ $job->id }}">See all</a></td>
-						@endif
-					</tr>
-				@endforeach
-				</tbody>
-			</table>
+					<!-- DATA -->
+					<tbody>
+						@foreach ($jobs as $job)
+							<tr>
+								<td> {{ $job->id }} </td>
+								<td> {{ $job->target_date }} </td>
+								<td> {{ $job->created_at }} </td>
+								<td> {{ $job->updated_at }} </td>
+								<td> {{ $job->due_date }} </td>
+								<td> {{ $job->job_complete }} </td>
+								<td> {{ $job->invoice_sent }} </td>
+								@if(!isset($tests))
+								<td><a href="/job/{{ $job->id }}">{{ trans('dashboard.show_all') }}</a></td>
+								@endif
+							</tr>
+						@endforeach
+					</tbody>
+					
+				</table>
+
+			</div>
 		</div>
 	</div>
-</div>
-@endif
 @endif

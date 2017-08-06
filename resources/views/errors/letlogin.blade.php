@@ -1,17 +1,17 @@
 @extends('layouts.MessageBox')
 
 @section('title')
-    {{ trans('error.404') }}
+    {{ trans('error.guest_title') }}
 @endsection
 
 @section('content')
-    {{ trans('error.404_message') }}
+    {{ trans('error.guest_access') }}
 @endsection
 
 @section('button_route')
-    {{ url(config('route.dashboard')) }}
+    {{ url(config('route.login')) }}
 @endsection
 
 @section('button_icon')
-    {{ config('icon.home') }}
+    {{ config('icon.account') }}
 @endsection

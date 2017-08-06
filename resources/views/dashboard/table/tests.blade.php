@@ -1,37 +1,40 @@
-@if(null !== $tests)
-<div class="col s12 m12">
-	<div class="hide">{{ $i = 1}}</div>
-	<div class="card-panel">
-		<div class="card-content">
+@if(isset($tests) && !is_null($tests))
+	<div class="col s12 m12">
+		<div class="card-panel">
+			<div class="card-content">
 
-			<span class="card-title"></span>
+				<!-- Table -->
+				<table class="responsive-table">
 
-			<table class="responsive-table">
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Test Group</th>
-						<th>Test Status</th>
-						<th>Created at</th>
-						<th>Updated at</th>
-						<th>Details</th>
-					</tr>
-				</thead>
+					<!-- Headers -->
+					<thead>
+						<tr>
+							<th>{{ trans('dashboard.test_id') }}</th>
+							<th>{{ trans('dashboard.test_group') }}</th>
+							<th>{{ trans('dashboard.status') }}</th>
+							<th>{{ trans('dashboard.test_created_at') }}</th>
+							<th>{{ trans('dashboard.test_updated_at') }}</th>
+							<th>{{ trans('dashbaord.test_details') }}</th>
+						</tr>
+					</thead>
 
-				<tbody>
-				@foreach ($tests as $test)
-					<tr>
-						<td> {{ $i++ }} </td>
-						<td> {{ $test->test_group }} </td>
-						<td> {{ $test->test_status }} </td>
-						<td> {{ $test->created_at }} </td>
-						<td> {{ $test->updated_at }} </td>
-						<td><a href="#">See all</a></td>
-					</tr>
-				@endforeach
-				</tbody>
-			</table>
+					<!-- DATA -->
+					<tbody>
+						@foreach ($tests as $test)
+							<tr>
+								<td> {{ $test->id }} </td>
+								<td> {{ $test->test_group }} </td>
+								<td> {{ $test->test_status }} </td>
+								<td> {{ $test->created_at }} </td>
+								<td> {{ $test->updated_at }} </td>
+								<td><a href="#">See all</a></td>
+							</tr>
+						@endforeach
+					</tbody>
+					
+				</table>
+
+			</div>
 		</div>
 	</div>
-</div>
-@endif 
+@endif

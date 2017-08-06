@@ -28,6 +28,6 @@ class User extends Authenticatable
     ];
 
     public function assets(){
-        return $this->hasMany(Asset::class, 'client_id');
+        return $this->hasMany(Asset::class);
     }
 }

@@ -8,28 +8,63 @@ use DB;
 
 class JobController extends Controller
 {
-    public function showall(){
+    private function user_jobs($user_id){
+        return  DB::table('jobs')
+                    ->join('assets', 'assets.id', '=', 'jobs.asset_id')
+                    ->where('assets.user_id', '=', $user_id)
+                    ->get();
+    }
 
-    	try {
-	    	DB::connection()->getPdo();
-		} catch (\Exception $e) {
-    		return back();
-		}
+    private function is_mine($job){
 
-        $jobs = Job::all();
+        $job = DB::table('jobs')
+                    ->join('assets', 'assets.id', '=', 'jobs.asset_id')
+                    ->select('assets.user_id')
+                    ->where('jobs.id', '=', $job)
+                    ->get();
+
+        if($job[0]->user_id !== Validations::my_id()){
+            return FALSE;
+        }else{
+            return TRUE;
+        }
+    }
+
+   public function showall(){
+
+        Validations::is_Connected();
+        Validations::is_Guest();
+
+        if(!Validations::is_Admin()){
+           $jobs = $this->user_jobs(Validations::my_id());
+        }else{
+            $jobs = Job::all();
+        }
         return view('dashboard.job', compact('jobs'));
     }
 
     public function jobtests($job){
 
-    	try {
-	    	DB::connection()->getPdo();
-		} catch (\Exception $e) {
-    		return back();
-		}
+        if (!Validations::is_Connected()) {
+            return back();
+        }
+
+        if(Validations::is_Guest()){
+            return view('guest');
+        }
+
+        if (!Validations::is_Admin()) {
+            if (!$this->is_mine($job)) {
+                return back();
+            }
+        }
 
         $jobs[] = Job::find($job);
-        $tests = Job::find($job)->tests;
+        $tests = DB::table('tests')
+                    ->join('jobs', 'tests.job_id', '=', 'jobs.id')
+                    ->where('jobs.id', '=', $job)
+                    ->get();
+
 
         return view('dashboard.test', compact('jobs', 'tests'));
     }

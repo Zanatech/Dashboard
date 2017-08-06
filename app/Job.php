@@ -11,10 +11,10 @@ class Job extends Model
     }
 
     public function asset(){
-    	return $this->belongTo(Asset::class, 'asset_id');
+    	return $this->belongTo(Asset::class);
     }
 
     public function user(){
-    	return $this->belongTo(User::class, 'client_id');
+    	return $this->belongTo(User::class);
     }
 }

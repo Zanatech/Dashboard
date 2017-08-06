@@ -1,7 +1,11 @@
 @extends('layouts.master')
 
 @section('Custom_CSS')
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+	@if (!Auth::guest())
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+	@else
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/message_card.css') }}">
+    @endif
 @stop
 
 @section('body_class', (config('master.collapse_sidebar') ? 'sidebar-collapse' : ''))
@@ -26,21 +30,21 @@
 			    <a href="#!email"><span class="white-text email">{{  Auth::user()->email }}</span></a>
 
 			    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <span class="white-text email">{{ trans('index.log_out') }}</span>
+                    <span class="white-text email">{{ trans('dashboard.log_out') }}</span>
                 </a>
-	    	    <form id="logout-form" action="{{ url(config('master.logout_url')) }}" method="POST" style="display: none;">
+	    	    <form id="logout-form" action="{{ url(config('route.logout')) }}" method="POST" style="display: none;">
 				    {{ csrf_field() }}
 			    </form>
 		   </div>
 
 		   <!-- Main menu generate -->
-			@each('layouts.partial.sidebar', config('master.menu'), 'item')
+			@each('layouts.partial.sidebar', config('menu.items'), 'item')
 
 		</ul>
 
 		<!-- Body -->
 		@yield('content')
 	@else
-		@include('layouts.letlogin')
+		@include('errors.letlogin')
 	@endif
 @stop

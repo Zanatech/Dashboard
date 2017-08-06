@@ -1,11 +1,11 @@
 @extends('layouts.MessageBox')
 
 @section('title')
-    {{ trans('error.404') }}
+    {{ trans('error.denied_title') }}
 @endsection
 
 @section('content')
-    {{ trans('error.404_message') }}
+    {{ trans('error.denied_message') }}
 @endsection
 
 @section('button_route')

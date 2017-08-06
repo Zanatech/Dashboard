@@ -1,0 +1,21 @@
+MASTER
+	|-MessageBox
+	|	|-404
+	|	|-letlogin
+	|	|-no_access
+	|
+	|-Page [header, sidenav]
+	|	|-table
+	|	|	|-client
+	|	|	|-job
+	|	|	|-tes
+	|	|	|-testdetail
+	|	|	|-asset
+	|	|
+	|	|-import
+	|
+	|-AuthForm
+		|-Login
+		|-Register
+		|-Email
+		|-Reset 
