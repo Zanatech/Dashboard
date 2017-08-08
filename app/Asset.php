@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Asset extends Model
 {
-    public function tests(){
-    	return $this->hasMany(Test::class);
+    public function jobs(){
+    	return $this->hasMany(Job::class);
     }
 
     public function client(){
-    	return $this->belongTo(Client::class);
+    	return $this->belongsTo(User::class);
     }
 }

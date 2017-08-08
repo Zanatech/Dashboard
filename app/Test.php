@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Test extends Model
 {
     public function asset(){
-    	return $this->belongTo(Asset::class);
+    	return $this->belongTo(Job::class);
     }
 }

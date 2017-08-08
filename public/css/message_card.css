@@ -1,0 +1,19 @@
+html
+{
+    background: #fff;
+}
+
+.row
+{
+    min-width: 400px;
+    width: 600px;
+    margin: 7% auto;
+}
+
+@media (max-width: 768px) {
+    .row
+    {
+        width: 90%;
+        margin-top: 20px;
+    }
+}

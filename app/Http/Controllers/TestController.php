@@ -5,143 +5,75 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Test;
 use DB;
-use App\PowerFactor;
-use Charts;
+use Input;
+use Excel;
 
 class TestController extends Controller
 {
-    public function show(){
+    public function showall(){
 
-        try {
-            DB::connection()->getPdo();
-        } catch (\Exception $e) {
-            return back();
-        }
+        if (Validations::is_Connected()) {
+            if(!Validations::is_Guest()){
 
-        $tests = Test::all();
+                if(!Validations::is_Admin()){
+                   $tests = $this->user_tests(Validations::my_id());
+                }else{
+                    $tests = Test::all();
+                }
+                return view('dashboard.test', compact('tests'));
+                
+            }else {return view('errors.letlogin'); }
+        }else { return back(); }
 
-        if (!count($tests)) {
-            return back();
-        }
-        
-        foreach ($tests as $test) {
-            $dates[] = $test->created_at->toFormattedDateString();
-        }
-
-        $capacitance = null;
-        $power_factors = null;
-        $power_factors20 = null;
-
-        $datas = PowerFactor::where('insultest','=','A')->get();
-        foreach ($datas as $data) {
-            $capacitance[] = $data->cap;
-            $power_factors[] = $data->pf;
-            $power_factors20[] = $data->pf_20;
-        }
-
-        $chart = Charts::multi('areaspline', 'highcharts')
-            ->title('Insulation -  A')
-            ->colors(['#F44336', '#2196F3', '#009688'])
-            ->labels($dates)
-            ->dataset('Capacitance', $capacitance)
-            ->dataset('Measured', $power_factors)
-            ->dataset('@20°C', $power_factors20);
-
-        $charts[] = $chart;
-
-        $capacitance = null;
-        $power_factors = null;
-        $power_factors20 = null;
-
-        $datas = PowerFactor::where('insultest','=','B')->get();
-        foreach ($datas as $data) {
-            $capacitance[] = $data->cap;
-            $power_factors[] = $data->pf;
-            $power_factors20[] = $data->pf_20;
-        }
-
-        $chart = Charts::multi('areaspline', 'highcharts')
-            ->title('Insulation - B')
-            ->colors(['#F44336', '#2196F3', '#009688'])
-            ->labels($dates)
-            ->dataset('Capacitance', $capacitance)
-            ->dataset('Measured', $power_factors)
-            ->dataset('@20°C', $power_factors20);
-
-        $charts[] = $chart;
-
-        $capacitance = null;
-        $power_factors = null;
-        $power_factors20 = null;
-        
-        $datas = PowerFactor::where('insultest','=','C')->get();
-        foreach ($datas as $data) {
-            $capacitance[] = $data->cap;
-            $power_factors[] = $data->pf;
-            $power_factors20[] = $data->pf_20;
-        }
-
-        $chart = Charts::multi('areaspline', 'highcharts')
-            ->title('Insulation - C')
-            ->colors(['#F44336', '#2196F3', '#009688'])
-            ->labels($dates)
-            ->dataset('Capacitance', $capacitance)
-            ->dataset('Measured', $power_factors)
-            ->dataset('@20°C', $power_factors20);
-
-        $charts[] = $chart;
-    	return view('dashboard.test', compact('tests', 'charts'));
     }
 
-    public function test($id){
+    private function user_tests($user_id){
 
-        try {
-            DB::connection()->getPdo();
-        } catch (\Exception $e) {
-            return back();
+        return  DB::table('tests')
+                    ->join('jobs', 'jobs.id', '=', 'tests.job_id')
+                    ->join('assets', 'assets.id', '=', 'jobs.asset_id')
+                    ->where('assets.user_id', '=', $user_id)
+                    ->get();
+    }
+
+    public function import(){
+
+        if(Validations::is_Connected()) {
+            if(!Validations::is_Guest()){
+                if(!Validations::is_Admin()){
+                   return back();
+                }else{
+                    return view('dashboard.import');
+                }              
+            }else {return view('errors.letlogin'); }
+        }else { return back(); }
+    }
+
+
+    public function importfile(){
+
+        if(Input::hasFile('import_file')){
+
+            $path = Input::file('import_file')->getRealPath();
+            $data = Excel::load($path, function($reader) {})->get();
+
+            /*if(!empty($data) && $data->count()){
+                foreach ($data as $key => $value) {
+                    $insert[] = ['insultest' => $value->insultest, 'testmodetxt' => $value->testmodetxt,
+                                'overalleng' => $value->overalleng,'overallgnd' => $value->overallgnd,
+                                'overallgar' => $value->overallgar,'overallust' => $value->overallust,
+                                'kv' => $value->kv,'cap' => $value->cap,
+                                 'pf' => $value->pf,'pf_20' => $value->pf_20,
+                                 'corr' => $value->corr,'ma' => $value->ma,
+                                 'watts' => $value->watts, 'rating' => $value->rating];
+                }
+                
+                if(!empty($insert)){
+                    DB::table('power_factors')->insert($insert);
+                    return view('dashboard.home', ['charts' => null]);
+                }
+            }*/
+            dd($data);
         }
-
-        $test = Test::find($id);
-        $columns = DB::select('SHOW COLUMNS FROM power_factors');
-        $datas = PowerFactor::all()->where('test_id','=',$id)->take(3);
-
-        $chart = Charts::multi('bar', 'material')
-            ->title("Capacitance C (pF)")
-            ->dimensions(0, 400)
-            ->template("material")
-            ->labels([$test->created_at]);  
-
-            foreach ($datas as $data) {
-                $chart->dataset($data->insultest, [$data->cap]);
-            }
-
-        $charts[] = $chart;
-
-        $chart = Charts::multi('bar', 'material')
-            ->title("Measured")
-            ->dimensions(0, 400)
-            ->template("material")
-            ->labels([$test->created_at]);  
-
-            foreach ($datas as $data) {
-                $chart->dataset($data->insultest, [$data->pf]);
-            }  
-
-        $charts[] = $chart;
-
-        $chart = Charts::multi('bar', 'material')
-            ->title("@20°C")
-            ->dimensions(0, 400)
-            ->template("material")
-            ->labels([$test->created_at]);  
-
-            foreach ($datas as $data) {
-                $chart->dataset($data->insultest, [$data->pf_20]);
-            }  
-
-        $charts[] = $chart;
-
-        $datas = PowerFactor::all()->where('test_id','=',$id);
-        return view('dashboard.testdetail', compact('test','columns','datas', 'charts'));
     }
 }
