@@ -30,4 +30,26 @@ class User extends Authenticatable
     public function assets(){
         return $this->hasMany(Asset::class);
     }
+
+    public static function non_admins(){
+        return User::all()
+                ->where("user_role","=", 0);
+    }
+
+    public function array(){
+        return [
+
+            'id'                => $this->id,
+            'name'              => $this->name,
+            'email'             => $this->email,
+            //'email_confirmed'   => $this->email_confirmed,
+            //'password'          => $this->password,
+            //'user_role'         => $this->user_role,
+            //'last_login'        => $this->last_login,
+            //'total_login_count' => $this->total_login_count,
+            //'remember_token'    => $this->remember_token,
+            //'created_at'        => $this->created_at,
+            //'updated_at'        => $this->updated_at,
+        ];
+    }
 }

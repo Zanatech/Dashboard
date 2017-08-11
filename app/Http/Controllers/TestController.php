@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Test;
-use DB;
-use Input;
-use Excel;
 
 class TestController extends Controller
 {
@@ -16,24 +13,27 @@ class TestController extends Controller
             if(!Validations::is_Guest()){
 
                 if(!Validations::is_Admin()){
-                   $tests = $this->user_tests(Validations::my_id());
+                   $tests = Test::user_tests(Validations::my_id())->toArray();
                 }else{
                     $tests = Test::all();
                 }
-                return view('dashboard.test', compact('tests'));
+
+                $tables[] = 
+                TableController::new_table
+                (
+                    'Tests', 
+                    'test', 
+                    $tests, 
+                    true, 
+                    '/test/', 
+                    false,
+                    null
+                );
+
+                return view('dashboard.table', compact('tables'));
                 
             }else {return view('errors.letlogin'); }
         }else { return back(); }
-
-    }
-
-    private function user_tests($user_id){
-
-        return  DB::table('tests')
-                    ->join('jobs', 'jobs.id', '=', 'tests.job_id')
-                    ->join('assets', 'assets.id', '=', 'jobs.asset_id')
-                    ->where('assets.user_id', '=', $user_id)
-                    ->get();
     }
 
     public function import(){
@@ -49,31 +49,26 @@ class TestController extends Controller
         }else { return back(); }
     }
 
+    public function details($test_id){
 
-    public function importfile(){
+        $test = Test::find($test_id)->array();
+        $tests[] = $test; 
 
-        if(Input::hasFile('import_file')){
+        $tables[] = 
+        TableController::new_table
+                (
+                    'Tests', 
+                    'test', 
+                    $tests, 
+                    false, 
+                    '', 
+                    false,
+                    null
+                );
 
-            $path = Input::file('import_file')->getRealPath();
-            $data = Excel::load($path, function($reader) {})->get();
+        $tables[] = DetailsController::get_details_from($test);
 
-            /*if(!empty($data) && $data->count()){
-                foreach ($data as $key => $value) {
-                    $insert[] = ['insultest' => $value->insultest, 'testmodetxt' => $value->testmodetxt,
-                                'overalleng' => $value->overalleng,'overallgnd' => $value->overallgnd,
-                                'overallgar' => $value->overallgar,'overallust' => $value->overallust,
-                                'kv' => $value->kv,'cap' => $value->cap,
-                                 'pf' => $value->pf,'pf_20' => $value->pf_20,
-                                 'corr' => $value->corr,'ma' => $value->ma,
-                                 'watts' => $value->watts, 'rating' => $value->rating];
-                }
-                
-                if(!empty($insert)){
-                    DB::table('power_factors')->insert($insert);
-                    return view('dashboard.home', ['charts' => null]);
-                }
-            }*/
-            dd($data);
-        }
+        return view('dashboard.table', compact('tables'));
+
     }
 }

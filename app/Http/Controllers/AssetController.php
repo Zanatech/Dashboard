@@ -7,28 +7,31 @@ use App\Asset;
 
 class AssetController extends Controller
 {
-    private function user_assets($user_id){
-        return Asset::all()->where('user_id', '=', $user_id);
-    }
-
-    private function is_mine($asset){
-        if(Asset::find($asset)->user_id !== Validations::my_id()){
-            return FALSE;
-        }else{
-            return TRUE;
-        }
-    }
-
     public function showall(){
 
         if (Validations::is_Connected()) {
             if(!Validations::is_Guest()){
+
                 if(!Validations::is_Admin()){
-                    $assets = $this->user_assets(Validations::my_id());
+                    $assets = Asset::user_assets(Validations::my_id())->toArray();
                 }else{
                     $assets = Asset::all();
                 }
-                return view('dashboard.asset', compact('assets'));
+
+                $tables[] = 
+                TableController::new_table
+                (
+                    'Assets', 
+                    'asset', 
+                    $assets, 
+                    true, 
+                    '/asset/', 
+                    false,
+                    null
+                );
+
+                return view('dashboard.table', compact('tables'));
+
             }else {return view('errors.letlogin'); }
         }else { return back(); }
 
@@ -40,15 +43,40 @@ class AssetController extends Controller
             if(!Validations::is_Guest()){
 
                 if (!Validations::is_Admin()) {
-                    if (!$this->is_mine($asset)) {
+                    if (!Asset::is_mine($asset, Validations::my_id())) {
                         return back();
                     }
                 }
 
-                $assets[] = Asset::find($asset);
+                $array_assets[] = Asset::find($asset)->array();
+
+                $tables[] = 
+                TableController::new_table
+                (
+                    'Assets', 
+                    'asset', 
+                    $array_assets, 
+                    false, 
+                    '', 
+                    false,
+                    null
+                );
+
                 $jobs = Asset::find($asset)->jobs;
 
-                return view('dashboard.job', compact('assets', 'jobs'));
+                $tables[] = 
+                TableController::new_table
+                (
+                    'Asset Jobs', 
+                    'job', 
+                    $jobs, 
+                    true, 
+                    '/job/', 
+                    false,
+                    null
+                );
+
+                return view('dashboard.table', compact('tables'));
                 
             }else {return view('errors.letlogin'); }
         }else { return back(); }

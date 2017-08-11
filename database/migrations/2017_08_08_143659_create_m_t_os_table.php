@@ -15,6 +15,7 @@ class CreateMTOsTable extends Migration
     {
         Schema::create('m_t_os', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('test_id');
             $table->timestamps();
         });
     }

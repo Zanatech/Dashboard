@@ -15,8 +15,20 @@ class UserController extends Controller
                 if (!Validations::is_Admin()) {
                     return back();
                 }else{
-                    $clients = User::all()->where("user_role","=", 0);
-                    return view('dashboard.client', compact('clients'));
+                    
+                    $tables[] = 
+                    TableController::new_table
+                    (
+                        'Clients', 
+                        'client', 
+                        User::non_admins(), 
+                        true, 
+                        '/client/', 
+                        false,
+                        null
+                    );
+
+                    return view('dashboard.table', compact('tables'));
                 }
 
             }else {return view('errors.letlogin'); }
@@ -32,10 +44,34 @@ class UserController extends Controller
                 if (!Validations::is_Admin()) {
                     return back();
                 }else{
-                    $clients[] = User::find($client);
-                    $assets = User::find($client)->assets;
 
-                    return view('dashboard.asset', compact('clients', 'assets'));
+                    $array_clients[] = User::find($client)->array();
+
+                    $tables[] = 
+                    TableController::new_table
+                    (
+                        'Clients', 
+                        'client', 
+                        $array_clients, 
+                        false, 
+                        '', 
+                        false,
+                        null
+                    );
+
+                    $tables[] = 
+                    TableController::new_table
+                    (
+                        'Client Assets', 
+                        'asset', 
+                        User::find($client)->assets, 
+                        true, 
+                        '/asset/', 
+                        false,
+                        null
+                    );
+
+                    return view('dashboard.table', compact('tables'));
                 }
                 
             }else {return view('errors.letlogin'); }

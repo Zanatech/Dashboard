@@ -19,6 +19,7 @@ class CreateResAislamientosTable extends Migration
             $table->double('Corr1');
             $table->double('Corr2');
             $table->double('Corr3');
+            $table->integer('test_id');
             $table->timestamps();
         });
     }

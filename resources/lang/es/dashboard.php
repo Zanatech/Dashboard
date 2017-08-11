@@ -37,6 +37,7 @@ return [
         // Tests
         'test_id'                  => 'ID',
         'test_group'               => 'Grupo de Prueba',
+        'result_group'             => 'Grupo de Resultados',
         'test_status'              => 'Estatus',
         'test_created_at'          => 'Creado',
         'test_updated_at'          => 'Actualizado',

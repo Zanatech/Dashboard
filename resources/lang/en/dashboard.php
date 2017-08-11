@@ -2,44 +2,84 @@
 
 return [
         // General Interface
-        'see_all'                   => 'See All',
-        'show_all'                  => 'Show All',
         'language'                  => 'Language',
-        // SideNav
         'log_out'                   => 'Log Out',
+        'see_all'                   => 'See all',
 
         // Tables
-        // Clients
-        'client_id'                 => 'ID',
-        'client_name'               => 'Name',
-        'client_created'            => 'Created at',
-        'client_asset'              => 'Assets',
+        'client'        => 
+        [
+                'id'                 => 'ID',
+                'name'               => 'Name',
+                'created'            => 'Created at',
+        ],
 
-        // Jobs
-        'job_id'                    => 'ID',
-        'job_target_date'           => 'Target Date',
-        'job_created_at'            => 'Created at',
-        'job_updated_at'            => 'Updated at',
-        'job_due_date'              => 'Due Date',
-        'job_complete'              => 'Job Complete',
-        'job_invoice_sent'          => 'Invoce Sent',
+        'job'           =>
+        [
+                'id'                    => 'ID',
+                'target_date'           => 'Target Date',
+                'due_date'              => 'Due Date',
+                'complete'              => 'Job Complete',
+                'invoice_sent'          => 'Invoce Sent',
+        ],
+        
+        'asset'         =>
+        [
+                'id'                 => 'ID',
+                'plant'              => 'Plant',
+                'substation'         => 'Substation',
+                'eq'                 => 'EQ Type',
+                'name'               => 'Name',
+        ],
 
-        // Assets
-        'asset_id'                 => 'ID',
-        'asset_plant'              => 'Plant',
-        'asset_substation'         => 'Substation',
-        'asset_eq'                 => 'EQ Type',
-        'asset_name'               => 'Name',
-        'asset_created_at'         => 'Created At',
-        'asset_updated_at'         => 'Updated At',
-        'asset_jobs'               => 'Jobs',
 
-        // Tests
-        'test_id'                  => 'ID',
-        'test_group'               => 'Test Group',
-        'test_status'              => 'Test Status',
-        'test_created_at'          => 'Created at',
-        'test_updated_at'          => 'Updated at',
-        'test_details'             => 'Details'
+        'test'          =>
+        [
+                'id'                  => 'ID',
+                'group'               => 'Test Group',
+                'result_group'        => 'Result Group',
+                'status'              => 'Test Status',
+        ],
+
+        'fp_table'      =>
+        [
+                'id'                                    => 'ID',
+                'testmodetxt'                           => 'Test Mode Text',
+                'kv'                                    => 'KV',
+                'cap'                                   => 'Capacitance',
+                'pf'                                    => 'Power Factor',
+                'pf_20'                                 => 'Power Factor 20',
+                'corr'                                  => 'Correction',
+                'ma'                                    => 'mA',
+                'watts'                                 => 'Watts',
+                'vdf'                                   => 'VDF',
+        ],
+
+        'mto_table'      =>
+        [
+                'id'                                    => 'ID',
+        ],
+
+        'res_table'      =>
+        [
+                'id'                                    => 'ID',
+                'test_time'                             => 'Test Time',
+                'corr1'                                 => 'Corr1',
+                'corr2'                                 => 'Corr2',
+                'corr3'                                 => 'Corr3',
+        ],
+
+        'corr_table'      =>
+        [
+                'id'                                            => 'ID',
+                'excite_corrma_1'                               => 'excite_corrma_1',
+                'excite_corrwatts_1'                            => 'excite_corrwatts_1',
+                'excite_corrma_2'                               => 'excite_corrma_2',
+                'excite_corrwatts_2'                            => 'excite_corrwatts_2',
+                'excite_corrma_3'                               => 'excite_corrma_3',
+                'excite_corrwatts_3'                            => 'excite_corrwatts_3',
+
+        ],
+
 
 ];

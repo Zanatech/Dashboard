@@ -4,43 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Job;
-use DB;
 
 class JobController extends Controller
 {
-    private function user_jobs($user_id){
-        return  DB::table('jobs')
-                    ->join('assets', 'assets.id', '=', 'jobs.asset_id')
-                    ->where('assets.user_id', '=', $user_id)
-                    ->get();
-    }
-
-    private function is_mine($job){
-
-        $job = DB::table('jobs')
-                    ->join('assets', 'assets.id', '=', 'jobs.asset_id')
-                    ->select('assets.user_id')
-                    ->where('jobs.id', '=', $job)
-                    ->get();
-
-        if($job[0]->user_id !== Validations::my_id()){
-            return FALSE;
-        }else{
-            return TRUE;
-        }
-    }
-
    public function showall(){
 
         if (Validations::is_Connected()) {
             if(!Validations::is_Guest()){
 
                 if(!Validations::is_Admin()){
-                   $jobs = $this->user_jobs(Validations::my_id());
+                   $jobs = Job::user_jobs(Validations::my_id())->toArray();
                 }else{
                     $jobs = Job::all();
                 }
-                return view('dashboard.job', compact('jobs'));
+
+                $tables[] = 
+                TableController::new_table
+                (
+                    'Jobs', 
+                    'job', 
+                    $jobs, 
+                    true, 
+                    '/job/', 
+                    false,
+                    null
+                );
+
+                return view('dashboard.table', compact('tables'));
                 
             }else {return view('errors.letlogin'); }
         }else { return back(); }
@@ -53,19 +43,38 @@ class JobController extends Controller
             if(!Validations::is_Guest()){
 
                 if (!Validations::is_Admin()) {
-                    if (!$this->is_mine($job)) {
+                    if (!Job::is_mine($job, Validations::my_id())) {
                         return back();
                     }
                 }
 
-                $jobs[] = Job::find($job);
-                $tests = DB::table('tests')
-                            ->join('jobs', 'tests.job_id', '=', 'jobs.id')
-                            ->where('jobs.id', '=', $job)
-                            ->get();
+                $array_jobs[] = Job::find($job)->array();
 
+                $tables[] = 
+                TableController::new_table
+                (
+                    'Jobs', 
+                    'job', 
+                    $array_jobs, 
+                    false, 
+                    '', 
+                    false,
+                    null
+                );
 
-                return view('dashboard.test', compact('jobs', 'tests'));
+                $tables[] = 
+                TableController::new_table
+                (
+                    'Job tests', 
+                    'test', 
+                    Job::job_tests($job)->toArray(), 
+                    true, 
+                    '/test/', 
+                    false,
+                    null
+                );
+
+                return view('dashboard.table', compact('tables'));
 
             }else {return view('errors.letlogin'); }
         }else { return back(); }

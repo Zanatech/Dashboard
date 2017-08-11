@@ -90,4 +90,31 @@ class CreateController extends Controller
         echo "Client create method is under construction";
         return view('dashboard.form.create_test');
     }
+
+    public function importfile(){
+
+        if(Input::hasFile('import_file')){
+
+            $path = Input::file('import_file')->getRealPath();
+            $data = Excel::load($path, function($reader) {})->get();
+
+            /*if(!empty($data) && $data->count()){
+                foreach ($data as $key => $value) {
+                    $insert[] = ['insultest' => $value->insultest, 'testmodetxt' => $value->testmodetxt,
+                                'overalleng' => $value->overalleng,'overallgnd' => $value->overallgnd,
+                                'overallgar' => $value->overallgar,'overallust' => $value->overallust,
+                                'kv' => $value->kv,'cap' => $value->cap,
+                                 'pf' => $value->pf,'pf_20' => $value->pf_20,
+                                 'corr' => $value->corr,'ma' => $value->ma,
+                                 'watts' => $value->watts, 'rating' => $value->rating];
+                }
+                
+                if(!empty($insert)){
+                    DB::table('power_factors')->insert($insert);
+                    return view('dashboard.home', ['charts' => null]);
+                }
+            }*/
+            dd($data);
+        }
+    }
 }

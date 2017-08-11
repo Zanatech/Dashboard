@@ -1,18 +1,11 @@
 @extends('layouts.master')
 
 @section('Custom_CSS')
-	@if (!Auth::guest())
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-	@else
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/message_card.css') }}">
-    @endif
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 @stop
-
-@section('body_class', (config('master.collapse_sidebar') ? 'sidebar-collapse' : ''))
 
 @section('body')
 
-	@if (!Auth::guest())
 	<!-- Nav bar -->
 	@include('layouts.partial.header')
 		
@@ -44,7 +37,4 @@
 
 		<!-- Body -->
 		@yield('content')
-	@else
-		@include('errors.letlogin')
-	@endif
 @stop

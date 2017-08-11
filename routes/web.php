@@ -27,6 +27,7 @@ Route::get('/client/{client}', 'UserController@clientassets');
 Route::get('/asset/{asset}', 'AssetController@assetjobs');
 Route::get('/job/{job}', 'JobController@jobtests');
 Route::post('/import/file', 'TestController@importfile');
+Route::get('/test/{test}', 'TestController@details');
 
 // Create forms
 Route::get('/create_client', 'CreateController@client');

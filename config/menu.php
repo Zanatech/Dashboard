@@ -64,17 +64,17 @@ return [
                     'role_access'   =>  '1'
                 ],
                 [
-                    'text'          =>  'job',
-                    'icon'          =>  'assignment',
-                    'icon_color'    =>  'teal',
-                    'url'           =>  'jobs',
-                    'role_access'   =>  '0'
-                ],
-                [
                     'text'          =>  'asset',
                     'icon'          =>  'list',
                     'icon_color'    =>  'teal',
                     'url'           =>  'assets',
+                    'role_access'   =>  '0'
+                ],
+                [
+                    'text'          =>  'job',
+                    'icon'          =>  'assignment',
+                    'icon_color'    =>  'teal',
+                    'url'           =>  'jobs',
                     'role_access'   =>  '0'
                 ],
                 [
@@ -92,7 +92,7 @@ return [
             'icon'          =>  'expand_more',
             'icon_color'    =>  'teal',
             'url'           =>  '#',
-            'role_access'   =>  '0',
+            'role_access'   =>  '1',
             'submenu'       => 
             [
                 [

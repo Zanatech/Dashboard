@@ -16,5 +16,8 @@
 		'asset_message'			=> 'Fill the form, this will create a new Asset on the database, remember to select the Client who own this new Asset',
 
 		// Job Form
+		'job_title'				=> 'New Job',
+		'job_message'			=> 'Fill the form to create a new job for a Client.'
+
 		// Test Form
 	];
