@@ -1,16 +1,26 @@
-@extends('layouts.master')
+@extends('master')
 
 @section('Custom_CSS')
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 @stop
 
 @section('body')
-
+	
 	<!-- Nav bar -->
-	@include('layouts.partial.header')
+	@include('partial.header')
+
+	@if(isset($notifications) and !is_null($notifications) and count($notifications))
+	  <ul class="collection">
+	      @foreach($notifications as $notification)
+            <li class="collection-item dismissable">
+            	<div>{{ $notification }}</div>
+            </li>
+	      @endforeach
+	  </ul>
+	@endif
 		
 		<!-- Side Nav -->
-		<ul id="slide-out" class="side-nav fixed collapsible" data-collapsible="{{ config('menu.sidebar_type') }}">
+		<ul id="slide-out" class="side-nav fixed collapsible" data-collapsible="{{ config('user.menu.sidebar_type') }}">
 
 			<!-- Fast profile Information -->
 			 <div class="user-view">
@@ -25,16 +35,16 @@
 			    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <span class="white-text email">{{ trans('dashboard.log_out') }}</span>
                 </a>
-	    	    <form id="logout-form" action="{{ url(config('route.logout')) }}" method="POST" style="display: none;">
+	    	    <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
 				    {{ csrf_field() }}
 			    </form>
 		   </div>
 
 		   <!-- Main menu generate -->
-			@each('layouts.partial.sidebar', config('menu.items'), 'item')
+			@each('partial.sidebar', config('user.menu.items'), 'item')
 
 		</ul>
 
 		<!-- Body -->
-		@yield('content')
-@stop
+		<div id="container">@yield('content')</div>
+	@stop

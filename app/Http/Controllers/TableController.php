@@ -7,61 +7,65 @@ use Charts;
 
 class TableController extends Controller
 {
-      public static function new_table($table_title, $headers, $content, $had_link, $link, $reveal, $charts){
 
-            if (is_object($content)) {
+  public static function new_table($table_title, $headers, $content, $had_link, $link, $reveal, $charts){
 
-                  foreach ($content as $object) {
-                        $array[] = $object->array();
-                  }     
-                  $table['content'] = $array;
-            }else{   $table['content'] = $content;   }
+    if (is_object($content)) {
 
-            $table['table_title'] = $table_title; 
-            $table['table_name'] = $headers;
-            $table['main'] = $had_link;
-            $table['link'] = $link;
-            $table['reveal'] = $reveal;
-            $table['charts'] = $charts;
+    foreach ($content as $object) {
+      $array[] = $object->array();
+    }
+      if (isset($array)) {
+        $table['content'] = $array;
+      }else{ $table['content'] = null;}
+
+    }else{ $table['content'] = $content;   }
 
 
-            return $table;
-      }
+    $table['table_title'] = $table_title; 
+    $table['table_name'] = $headers;
+    $table['main'] = $had_link;
+    $table['link'] = $link;
+    $table['reveal'] = $reveal;
+    $table['charts'] = $charts;
 
-      public static function multi_bar($title, $labels, $datasets){
+    return $table;
+  }
 
-            $chart = Charts::multi('bar', 'material')
+  public static function multi_bar($title, $labels, $datasets){
+
+    $chart = Charts::multi('bar', 'material')
                     ->title($title)
                     ->template("material")
                     ->labels($labels);
 
-            foreach ($datasets as $dataset) {
-                  $chart->dataset($dataset['label'], $dataset['values']);
-            }
+    foreach ($datasets as $dataset) {
+      $chart->dataset($dataset['label'], $dataset['values']);
+    }
 
-            return $chart;
-      }
+    return $chart;
+  }
 
-      public static function multi_areaspline($title, $labels, $datasets){
+  public static function multi_areaspline($title, $labels, $datasets){
 
-            $chart = Charts::multi('areaspline', 'highcharts')
+    $chart = Charts::multi('areaspline', 'highcharts')
                     ->title($title)
                     ->labels($labels);
 
-            foreach ($datasets as $dataset) {
-                  $chart->dataset($dataset['label'], $dataset['values']);
-            }
+    foreach ($datasets as $dataset) {
+      $chart->dataset($dataset['label'], $dataset['values']);
+    }
 
-            return $chart;
-      }
+    return $chart;
+  }
 
-      public static function create_line($title, $element_label, $labels, $values){
+  public static function create_line($title, $element_label, $labels, $values){
 
-            return Charts::create('line', 'highcharts')
-                        ->title($title)
-                        ->elementLabel($element_label)
-                        ->labels($labels)
-                        ->values($values)
-                        ->responsive(true);
-      }
+    return Charts::create('line', 'highcharts')
+                  ->title($title)
+                  ->elementLabel($element_label)
+                  ->labels($labels)
+                  ->values($values)
+                  ->responsive(true);
+    }
 }

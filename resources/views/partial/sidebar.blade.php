@@ -3,14 +3,14 @@
     @if (isset($item['submenu']))
         <div class="collapsible-header active">
 
-            <i class="material-icons {{ $item['icon_color']}}-text ">{{ $item['icon'] }}</i>
+            <i class="material-icons {{ $item['icon_color'] }}-text ">{{ $item['icon'] }}</i>
 
             <a style="color: inherit; font-size: 14px" href="{{ url($item['url']) }}"><b>{{ trans('menu.'.$item['text']) }}</b></a>
         </div>
         <div class="divider"></div>
         <div class="collapsible-body">
             <ul class="collapsible" data-collapsible="expandable">
-                @each('layouts.partial.sidebar', $item['submenu'], 'item')  
+                @each('partial.sidebar', $item['submenu'], 'item')  
             </ul>
         </div>
     @else

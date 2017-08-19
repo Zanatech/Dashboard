@@ -36,6 +36,11 @@ class User extends Authenticatable
                 ->where("user_role","=", 0);
     }
 
+    public static function admins(){
+        return User::all()
+                ->where("user_role","=", 1);
+    }
+
     public function array(){
         return [
 

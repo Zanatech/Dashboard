@@ -14,14 +14,15 @@ class CreateJobsTable extends Migration
     public function up()
     {
         Schema::create('jobs', function (Blueprint $table) {
-            $table->increments('id');          
+            $table->increments('id');
+            $table->string('job_name');          
             $table->date('target_date');
-            $table->timestamps();
             $table->date('due_date')->nullable();
             $table->boolean('job_complete')->default(false);
             $table->boolean('invoice_sent')->default(false);
             $table->integer('user_id');
             $table->integer('asset_id');
+            $table->timestamps();
         });
     }
 

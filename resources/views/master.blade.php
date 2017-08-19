@@ -1,13 +1,14 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
+
 <html>
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 		<title>
-			@yield('title_prefix', config('master.title_prefix'))
-			@yield('title', config('master.title'))
-			@yield('title_postfix', config('master.title_postfix'))
+			@yield('title_prefix', config('user.master.title_prefix'))
+			@yield('title', config('user.master.title'))
+			@yield('title_postfix', config('user.master.title_postfix'))
 		</title>
 
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -21,7 +22,7 @@
 		<!-- Custom Materialize CSS-->
 		<link href="asset{{ 'css/style.css' }}" type="text/css" rel="stylesheet" media="screen,projection"/>
 
-		@if(config('master.plugins.datatables'))
+		@if(config('user.master.plugins.datatables'))
 	        <!-- DataTables -->
 	        <link rel="stylesheet" href="//cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.css">
     	@endif
@@ -44,12 +45,16 @@
 		</div>
 
 		<script src="{{ asset('js/jquery-2.1.1.min.js') }}"></script>
-        <script src="{{ asset('js/materialize.js') }}"></script>
-        <script src="{{ asset('js/init.js') }}"></script>
-		@if(config('adminlte.plugins.datatables'))
+		<script src="{{ asset('js/materialize.js') }}"></script>
+        <script src="{{ asset('js/legacy.js') }}"></script>
+        <script src="{{ asset('js/picker.js') }}"></script>
+        <script src="{{ asset('js/picker.date.js') }}"></script>
+        <script src="{{ asset('js/picker.time.js') }}"></script>
+		@if(config('user.master.plugins.datatables'))
 		    <!-- DataTables -->
 		    <script src="//cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.js"></script>
 		@endif	
+        <script src="{{ asset('js/init.js') }}"></script>
 		@yield('Custom_JS')
 	</body>
 </html>

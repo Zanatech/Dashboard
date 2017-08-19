@@ -15,11 +15,11 @@ class UserController extends Controller
                 if (!Validations::is_Admin()) {
                     return back();
                 }else{
-                    
+
                     $tables[] = 
                     TableController::new_table
                     (
-                        'Clients', 
+                        'dashboard.title_client', 
                         'client', 
                         User::non_admins(), 
                         true, 
@@ -28,15 +28,14 @@ class UserController extends Controller
                         null
                     );
 
-                    return view('dashboard.table', compact('tables'));
+                    return view('master.page.table', compact('tables'));
                 }
 
             }else {return view('errors.letlogin'); }
         }else { return back(); }
-
     }
 
-    public function clientassets($client){
+    public function assets($client){
 
         if (Validations::is_Connected()) {
             if(!Validations::is_Guest()){
@@ -50,7 +49,7 @@ class UserController extends Controller
                     $tables[] = 
                     TableController::new_table
                     (
-                        'Clients', 
+                        'dashboard.title_client', 
                         'client', 
                         $array_clients, 
                         false, 
@@ -62,7 +61,7 @@ class UserController extends Controller
                     $tables[] = 
                     TableController::new_table
                     (
-                        'Client Assets', 
+                        'dashboard.title_asset', 
                         'asset', 
                         User::find($client)->assets, 
                         true, 
@@ -71,10 +70,47 @@ class UserController extends Controller
                         null
                     );
 
-                    return view('dashboard.table', compact('tables'));
+                    return view('master.page.table', compact('tables'));
                 }
                 
             }else {return view('errors.letlogin'); }
         }else { return back(); }
+    }
+
+    public function new(){
+        if (Validations::is_Connected()) {
+            if(!Validations::is_Guest()){
+
+                if (!Validations::is_Admin()) {
+                    return back();
+                }else{
+                    $create_forms = config('user.create_form');
+                    $content = $create_forms['create_client'];
+
+                    return view('master.page.create_form', compact('content'));
+                }
+
+            }else {return view('errors.letlogin'); }
+        }else { return back(); }
+    }
+
+    public function save(){
+
+        $data = request();
+
+        $this->validate($data, [
+            'full_name' => 'required|string|min:4|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+        
+        User::create([
+            'name' => $data['full_name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]);
+
+        $notifications[] = "Usuario agregado";
+        return view('master.page.home', compact('notifications'));
     }
 }

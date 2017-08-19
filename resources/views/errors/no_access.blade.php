@@ -1,4 +1,4 @@
-@extends('layouts.MessageBox')
+@extends('master.message_box')
 
 @section('title')
     {{ trans('error.denied_title') }}
@@ -9,9 +9,9 @@
 @endsection
 
 @section('button_route')
-    {{ url(config('route.dashboard')) }}
+    {{ route('home') }}
 @endsection
 
 @section('button_icon')
-    {{ config('icon.home') }}
+    home
 @endsection

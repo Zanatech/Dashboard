@@ -1,43 +1,42 @@
 <?php
 
-
-
 // Login Routes
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 // Language Switcher
+
 Route::get('home/{locale}', function ($locale) {
     App::setLocale($locale); 
 
     return view('home');
 });
 
-// Links route Lv1
-Route::get('/', 'HomeController@index')->name('home');
+// Links for Client
 Route::get('/clients', 'UserController@showall')->name('clients');
+Route::get('/client/{client}', 'UserController@assets');
+Route::get('/create_client', 'UserController@new');
+Route::post('/save_client', 'UserController@save');
+
+// Links for Asset
 Route::get('/assets', 'AssetController@showall')->name('assets');
+Route::get('/asset/{asset}', 'AssetController@jobs');
+Route::get('/create_asset', 'AssetController@new');
+Route::post('/save_asset', 'AssetController@save');
+
+// Links for Job
 Route::get('/jobs', 'JobController@showall')->name('jobs');
+Route::get('/job/{job}', 'JobController@tests');
+Route::get('/create_job', 'JobController@new');
+Route::post('/save_job', 'JobController@save');
+
+// Links for Test
 Route::get('/tests', 'TestController@showall')->name('tests');
-Route::get('/import', 'TestController@import')->name('import');
-
-
-// Links Routes Lv2 
-Route::get('/client/{client}', 'UserController@clientassets');
-Route::get('/asset/{asset}', 'AssetController@assetjobs');
-Route::get('/job/{job}', 'JobController@jobtests');
-Route::post('/import/file', 'TestController@importfile');
 Route::get('/test/{test}', 'TestController@details');
+Route::get('/create_test', 'TestController@new');
+Route::post('/save_test', 'TestController@save');
 
-// Create forms
-Route::get('/create_client', 'CreateController@client');
-Route::post('/save_client', 'CreateController@client_save');
-
-Route::get('/create_asset', 'CreateController@asset');
-Route::post('/save_asset', 'CreateController@asset_save');
-
-Route::get('/create_job', 'CreateController@job');
-Route::post('/save_job', 'CreateController@job_save');
-
-Route::get('/create_test', 'CreateController@test');
-Route::post('/save_test', 'CreateController@test_save');
+// Links for Import_File
+Route::get('/import', 'ImporterController@showform');
+Route::get('/import/file', 'ImporterController@import');

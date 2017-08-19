@@ -1,4 +1,4 @@
-@extends('layouts.page')
+@extends('master.page')
 
 
 @section('content')
@@ -52,7 +52,7 @@
             </div>
 	    </div>
 
-	    @include('layouts.charts')
+
     </div>
 </section>
 	

@@ -1,21 +1,39 @@
-OLD   MASTER
-	|-MessageBox
-	|	|-404
-	|	|-letlogin
-	|	|-no_access
-	|
-	|-Page [header, sidenav]
-	|	|-table
-	|	|	|-client
-	|	|	|-job
-	|	|	|-tes
-	|	|	|-testdetail
-	|	|	|-asset
-	|	|
-	|	|-import
-	|
-	|-AuthForm
-		|-Login
-		|-Register
-		|-Email
-		|-Reset 
+Master
+	- page
+		- create_form
+		- home
+		- import 
+		- table
+
+	- auth_form
+		- login
+		- register
+		- email
+		- reset
+		
+	- message_box
+		- 404
+		- letlogin
+		- no_access
+
+Partials
+	- field
+	- header
+	- sidebar
+
+
+Config
+	- create_form
+	- master
+	- menu
+	- role
+
+
+Translate
+	- auth
+	- chart
+	- form
+	- dashbaord
+	- error
+	- menu
+	

@@ -1,11 +1,11 @@
-@extends('layouts.AuthForm')
+@extends('master.auth_form')
 
 @section('form_message')
     {{ trans('auth.login_message') }}
 @endsection
 
 @section('form_action')
-    {{ url(config('route.login')) }}
+    {{ route('login') }}
 @endsection
 
 @section('form_button_message')
@@ -13,24 +13,16 @@
 @endsection
 
 @section('links')
-    <a href="{{ url(config('route.password_reset')) }}"
+    <a href="{{ route('register') }}"
     class="teal-text"
-    >{{ trans('auth.i_forgot_my_password') }}</a>
-
-    <br>
-
-    @if (config('route.register'))
-        <a href="{{ url(config('route.register')) }}"
-        class="teal-text"
-        >{{ trans('auth.register_a_new_membership') }}</a>
-    @endif
+    >{{ trans('auth.register_a_new_membership') }}</a>
 @endsection
 
 @section('Fields')
     <!-- Email Field -->
     <div class="col s12 m12 {{ $errors->has('email') ? 'has-error' : '' }}">
         <div class="input-field">
-          <i class="material-icons prefix">{{ config('icon.mail') }}</i>
+          <i class="material-icons prefix">mail</i>
           <input type="email" name="email" class="form-control" value="{{ old('email') }}" id="icon_prefix" type="text" class="validate">
           <label for="icon_prefix">{{ trans('auth.email') }}</label>
         </div>
@@ -44,7 +36,7 @@
     <!-- Passwords Field -->
     <div class="col s12 m12 {{ $errors->has('password') ? 'has-error' : '' }}">
         <div class="input-field">
-          <i class="material-icons prefix">{{ config('icon.password') }}</i>
+          <i class="material-icons prefix">lock</i>
           <input type="password" name="password" class="form-control" id="icon_prefix" type="text" class="validate">
           <label for="icon_prefix">{{ trans('auth.password') }}</label>
         </div>

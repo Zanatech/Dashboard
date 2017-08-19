@@ -1,4 +1,4 @@
-@extends('layouts.page')
+@extends('master.page')
 
 @section('content')
 
@@ -16,10 +16,15 @@
 						<div class="card-image waves-effect waves-block waves-light">
 							@if(isset($table['charts']) and !is_null($table['charts']))	
 								@foreach($table['charts'] as $chart)
+
+								@if(isset($chart['size']) and !is_null($chart['size']))
+								<div class="{{ 'col '.$chart['size'] }}">
+								@else
 								<div class="col xl4 l4 m6 s12">
+								@endif
 							        	<div class="card-content">
 
-							        		{!! $chart->render() !!}
+							        		{!! $chart['chart']->render() !!}
 
 							        	</div>
 							    </div>
@@ -30,7 +35,7 @@
 						<!-- Card Preview Title -->
 						<div class="card-content">
 							<span class="card-title activator grey-text text-darken-4">
-								{{ $table['table_title'] }}
+								{{ trans($table['table_title']) }}
 								<i class="material-icons right">more_vert</i>
 							</span>
 						</div>
@@ -45,14 +50,18 @@
 
 						<!-- Card Title -->
 						<span class="card-title activator">
-							{{ $table['table_title'] }}
+							{{ trans($table['table_title']) }}
 							@if($table['reveal'])
 							<i class="material-icons right">close</i>
 							@endif
 						</span>
 
 						<!-- Table -->
-						<table class="responsive-table highlight">
+						@if ($table['main'])
+						<table class="datatable responsive-table highlight">
+						@else
+						<table class="infodata responsive-table highlight">
+						@endif
 
 							<!-- Headers -->
 							<thead>							
@@ -68,29 +77,31 @@
 
 							<!-- DATA -->
 							<tbody>
-								@foreach ($table['content'] as $row)
-									<tr>
+								@if(isset($table['content']) and !is_null($table['content']))
+									@foreach ($table['content'] as $row)
+										<tr>
 
-										@foreach($row as $value)
-											<td>{{ $value }}</td>
-										@endforeach
+											@foreach($row as $value)
+												<td>{{ $value }}</td>
+											@endforeach
 
-										@if($table['main'])
-											<td>
-											@if(is_object($row))
-											<a class="btn" href="{{ $table['link'].$row->id }}">
-												<i class="material-icons">forward</i>
-											</a>
-											@else
-											<a class="btn" href="{{ $table['link'].$row['id'] }}">
-												<i class="material-icons">forward</i>
-											</a>
+											@if($table['main'])
+												<td>
+												@if(is_object($row))
+												<a class="btn" href="{{ $table['link'].$row->id }}">
+													<i class="material-icons">forward</i>
+												</a>
+												@else
+												<a class="btn" href="{{ $table['link'].$row['id'] }}">
+													<i class="material-icons">forward</i>
+												</a>
+												@endif
+												</td>
 											@endif
-											</td>
-										@endif
 
-									</tr>
-								@endforeach
+										</tr>
+									@endforeach
+								@endif
 							</tbody>	
 
 						</table>

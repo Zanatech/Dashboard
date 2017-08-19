@@ -31,7 +31,7 @@ class Validations extends Controller
 
     public static function is_Admin(){
 
-        if (Auth::user()->user_role < config('role.ADMIN')) {
+        if (Auth::user()->user_role < config('user.role.ADMIN')) {
             return FALSE;
         }
 

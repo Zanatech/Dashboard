@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('master')
 
 @section('Custom_CSS')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/message_card.css') }}">

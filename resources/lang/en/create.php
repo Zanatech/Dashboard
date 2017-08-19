@@ -17,7 +17,9 @@
 
 		// Job Form
 		'job_title'				=> 'New Job',
-		'job_message'			=> 'Fill the form to create a new job for a Client.'
+		'job_message'			=> 'Fill the form to create a new job for a Job.',
 
 		// Test Form
+		'test_title'			=> 'New Test',
+		'test_message'			=> 'Fill the form to add a new test for a Job of an Asset of a Client'
 	];

@@ -1,4 +1,4 @@
-@extends('layouts.MessageBox')
+@extends('master.message_box')
 
 @section('title')
     {{ trans('error.guest_title') }}
@@ -9,9 +9,9 @@
 @endsection
 
 @section('button_route')
-    {{ url(config('route.login')) }}
+    {{ route('login') }}
 @endsection
 
 @section('button_icon')
-    {{ config('icon.account') }}
+    account_circle
 @endsection

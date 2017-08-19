@@ -1,11 +1,11 @@
-@extends('layouts.AuthForm')
+@extends('master.auth_form')
 
 @section('form_message')
     {{ trans('auth.register_message') }}
 @endsection
 
 @section('form_action')
-    {{ url(config('route.register')) }}
+    {{ route('register') }}
 @endsection
 
 @section('form_button_message')
@@ -13,7 +13,7 @@
 @endsection
 
 @section('links')
-    <a href="{{ url(config('route.login')) }}"
+    <a href="{{ route('login') }}"
        class="teal-text">{{ trans('auth.i_already_had_an_account') }}</a>
 @endsection
 
@@ -21,7 +21,7 @@
     <!-- Full_Name Field -->
     <div class="col s12 m12 {{ $errors->has('name') ? 'has-error' : '' }}">
         <div class="input-field">
-          <i class="material-icons prefix">{{ config('icon.account') }}</i>
+          <i class="material-icons prefix">account_circle</i>
           <input type="text" name="name" class="form-control" value="{{ old('name') }}" id="icon_prefix" type="text" class="validate">
           <label for="icon_prefix">{{ trans('auth.full_name') }}</label>
         </div>
@@ -35,7 +35,7 @@
     <!-- Email Field -->
     <div class="col s12 m12 {{ $errors->has('email') ? 'has-error' : '' }}">
         <div class="input-field">
-          <i class="material-icons prefix">{{ config('icon.mail') }}</i>
+          <i class="material-icons prefix">mail</i>
           <input type="email" name="email" class="form-control" value="{{ old('email') }}" id="icon_prefix" type="text" class="validate">
           <label for="icon_prefix">{{ trans('auth.email') }}</label>
         </div>
@@ -49,7 +49,7 @@
     <!-- Password Field -->
     <div class="col s12 m12 {{ $errors->has('password') ? 'has-error' : '' }}">
         <div class="input-field">
-          <i class="material-icons prefix">{{ config('icon.password') }}</i>
+          <i class="material-icons prefix">lock</i>
           <input type="password" name="password" class="form-control" id="icon_prefix" type="text" class="validate">
           <label for="icon_prefix">{{ trans('auth.password') }}</label>
         </div>
@@ -63,7 +63,7 @@
     <!-- Retype_Password Field -->
     <div class="col s12 m12 {{ $errors->has('password_confirmation') ? 'has-error' : '' }}">
         <div class="input-field">
-          <i class="material-icons prefix">{{ config('icon.password') }}</i>
+          <i class="material-icons prefix">lock</i>
           <input type="password" name="password_confirmation" class="form-control" ] id="icon_prefix" type="text" class="validate">
           <label for="icon_prefix">{{ trans('auth.retype') }}</label>
         </div>

@@ -15,16 +15,14 @@ class DetailsController extends Controller
 
     	return back();
     }
-
     private static function group_test($test){
         switch ($test['test_group']) {
             case 'TRANS':
                 return DetailsController::transformer_details($test);            
             default:
-                echo "Invalid Test - Please call IT";
+                $errors[] = 'Tabla no terminada - ERROR 002';
         }   
     }
-
     private static function transformer_details($test){
 
         switch ($test['result_group']) {
@@ -36,7 +34,7 @@ class DetailsController extends Controller
 	            return 
                 	TableController::new_table
                 (
-                    'Power Factor Table', 
+                    'dashboard.title_fp_table', 
                     'fp_table', 
 	                $details, 
                     false,
@@ -48,10 +46,10 @@ class DetailsController extends Controller
 
             	$details = DetailsController::corr_table($test['id'])->toArray();
 
-	            return 
+	            return
                 	TableController::new_table
                 (
-                    'Corr Table', 
+                    'dashboard.title_corr_table', 
                     'corr_table', 
 	                $details, 
                     false, 
@@ -60,8 +58,8 @@ class DetailsController extends Controller
                     DetailsController::corr_table_chart($details)
                 );
             case 'PA - MTO':
-                echo "Invalid Test - Please call IT";
-                return view('home');
+                $errors[] = 'Tabla no terminada - ERROR 002';
+                return view('master.page.home', compact('errors'));
             case 'PA - Res Aislamiento':
 
             	$details = DetailsController::res_table($test['id'])->toArray();
@@ -69,7 +67,7 @@ class DetailsController extends Controller
 	            return 
                 	TableController::new_table
                 (
-                    'Res Table', 
+                    'dashboard.title_res_table', 
                     'res_table', 
 	                $details, 
                     false, 
@@ -78,38 +76,33 @@ class DetailsController extends Controller
                     DetailsController::res_table_chart($details)
                 );
             default:
-                echo "Invalid Test - Please call IT";
-	            return view('home');
+                $errors[] = 'Prueba no existe - ERROR 003';
+	            return view('master.page.home');
 	    }
     }
-
     private static function fp_table($test_id){
         return  DB::table('f_ps')
                     ->select('id', 'testmodetxt', 'kv', 'cap', 'pf', 'pf_20', 'corr', 'ma', 'watts', 'vdf')
                     ->where('f_ps.test_id', '=', $test_id)
                     ->get();
     }
-
     private static function corr_table($test_id){
         return  DB::table('corr_exitacions')
                     ->select('id', 'excite_CorrMa_1', 'excite_CorrWatts_1', 'excite_CorrMa_2', 'excite_CorrWatts_2', 'excite_CorrMa_3', 'excite_CorrWatts_3')
                     ->where('corr_exitacions.test_id', '=', $test_id)
                     ->get();
     }
-
     private static function res_table($test_id){
         return  DB::table('res_aislamientos')
                     ->select('id', 'TestTime', 'Corr1', 'Corr2', 'Corr3')
                     ->where('res_aislamientos.test_id', '=', $test_id)
                     ->get();
     }
-
     private static function mto_table($test_id){
         return  DB::table('m_t_os')
                     //->where('m_t_os.test_id', '=', $test_id)
                     ->get();
     }
-
     private static function fp_table_charts($details){
 
         foreach ($details as $detail) {
@@ -120,44 +113,52 @@ class DetailsController extends Controller
 	    }
 
         $charts[] = 
-        TableController::multi_bar
-        (
-        	"Factor de Potencia - Devanado de alta tensión",
-        	["Capacitancia"],
-        	[
-        		['label' => $labels[0], 'values' => $cap[0]],
-        		['label' => $labels[1], 'values' => $cap[1]],
-        		['label' => $labels[2], 'values' => $cap[2]]
-    		]
-        );
+        [
+            'chart' => TableController::multi_bar
+            (
+            	trans('charts.pf_high'),
+            	[trans('charts.cap')],
+            	[
+            		['label' => $labels[0], 'values' => $cap[0]],
+            		['label' => $labels[1], 'values' => $cap[1]],
+            		['label' => $labels[2], 'values' => $cap[2]]
+        		]
+            ),
+            'size' => null
+        ];
 
         $charts[] = 
-        TableController::multi_bar
-        (
-        	"Factor de Potencia - Devanado de alta tensión",
-        	["FP @20"],
-        	[
-        		['label' => $labels[0], 'values' => $pf_20[0]],
-        		['label' => $labels[1], 'values' => $pf_20[1]],
-        		['label' => $labels[2], 'values' => $pf_20[2]]
-    		]
-        );
+        [
+            'chart' => TableController::multi_bar
+            (
+            	trans('charts.pf_high'),
+            	[trans('charts.fp_20')],
+            	[
+            		['label' => $labels[0], 'values' => $pf_20[0]],
+            		['label' => $labels[1], 'values' => $pf_20[1]],
+            		['label' => $labels[2], 'values' => $pf_20[2]]
+        		]
+            ),
+            'size' => null
+        ];
 
         $charts[] = 
-        TableController::multi_bar
-        (
-        	"Factor de Potencia - Devanado de baja tensión",
-        	["FP"],
-        	[
-        		['label' => $labels[0], 'values' => $pf[0]],
-        		['label' => $labels[1], 'values' => $pf[1]],
-        		['label' => $labels[2], 'values' => $pf[2]]
-        	]
-        );
+        [
+            'chart' => TableController::multi_bar
+            (
+            	trans('dashboard.pf_low'),
+            	[trans('charts.fp')],
+            	[
+            		['label' => $labels[0], 'values' => $pf[0]],
+            		['label' => $labels[1], 'values' => $pf[1]],
+            		['label' => $labels[2], 'values' => $pf[2]]
+            	]
+            ),
+            'size' => null
+        ];
 
         return $charts;
     }
-
     private static function corr_table_chart($details){
 
     	foreach ($details as $detail) {
@@ -171,32 +172,37 @@ class DetailsController extends Controller
         }
 
         $charts[] = 
-        	TableController::multi_areaspline
-        	(
-        		'mA',
-        		$labels,
-        		[
-	        		['label' => 'Fase A', 'values' => $ma1],
-        			['label' => 'Fase B', 'values' => $ma2],
-        			['label' => 'Fase C', 'values' => $ma3]
-        		]
-        	);
+        	[ 
+                'chart' => TableController::multi_areaspline
+            	(
+            		'mA',
+            		$labels,
+            		[
+    	        		['label' => 'Fase A', 'values' => $ma1],
+            			['label' => 'Fase B', 'values' => $ma2],
+            			['label' => 'Fase C', 'values' => $ma3]
+            		]
+            	), 
+                'size' => 'xl6 l6 m12 s12' 
+            ];
 
     	$charts[] = 
-        	TableController::multi_areaspline
-        	(
-        		'Watts',
-        		$labels,
-        		[
-        			['label' => 'Fase A', 'values' => $watts1],
-        			['label' => 'Fase B', 'values' => $watts2],
-        			['label' => 'Fase C', 'values' => $watts3]
-    			]
-        	);
+        	[
+                'chart' => TableController::multi_areaspline
+            	(
+            		'Watts',
+            		$labels,
+            		[
+            			['label' => 'Fase A', 'values' => $watts1],
+            			['label' => 'Fase B', 'values' => $watts2],
+            			['label' => 'Fase C', 'values' => $watts3]
+        			]
+            	),
+                'size' => 'xl6 l6 m12 s12' 
+            ];
 
         return $charts;
     }
-
     private static function res_table_chart($details){
 
 		foreach ($details as $detail) {
@@ -207,35 +213,43 @@ class DetailsController extends Controller
 		}
 
         $charts[] = 
-        	TableController::create_line
-        (
-        	'Low Grounded',
-        	'Label',
-        	$labels,
-        	$corr1
-        );
+        [
+            'chart' => TableController::create_line
+            (
+            	trans('charts.res_htl'),
+            	trans('charts.megohms'),
+            	$labels,
+            	$corr1
+            ), 
+            'size' => null
+        ];
 
         $charts[] = 
-        	TableController::create_line
-        (
-        	'High Grounded',
-        	'Label',
-        	$labels,
-        	$corr2
-        );
+        [
+            'chart' => TableController::create_line
+            (
+            	trans('charts.res_lth'),
+            	trans('charts.megohms'),
+            	$labels,
+            	$corr2
+            ), 
+            'size' => null
+        ];
 
         $charts[] = 
-        	TableController::create_line
-        (
-        	'Low + High Grounded',
-        	'Label',
-        	$labels,
-        	$corr3
-        );
+        [
+            'chart' => TableController::create_line
+            (
+            	trans('charts.res_hal'),
+            	trans('charts.megohms'),
+            	$labels,
+            	$corr3
+            ),
+            'size' => null
+        ];
 
         return $charts;
     }
-
     private static function mto_table_chart($details){
     }
 }
