@@ -8,6 +8,8 @@
 		<div class="row">
 		@foreach($tables as $table)
 
+
+		@if(count($table['content']))
 			<div class="col s12 m12">
 				<div class="card">
 
@@ -109,6 +111,18 @@
 					</div>
 				</div>
 			</div>
+		@else
+			<div class="col s12 m12">
+				<div class="card">
+					<div class="card-content">
+						<span class="card-title activator grey-text text-darken-4" >
+						<i class="material-icons">info</i>
+						No data was found
+						</span>
+					</div>
+				</div>		
+			</div>
+		@endif
 		@endforeach
 		</div>
 	</section>

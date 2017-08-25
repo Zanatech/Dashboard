@@ -13,9 +13,10 @@
 @endsection
 
 @section('links')
+<!--
     <a href="{{ route('register') }}"
     class="teal-text"
-    >{{ trans('auth.register_a_new_membership') }}</a>
+    >{{ trans('auth.register_a_new_membership') }}</a> -->
 @endsection
 
 @section('Fields')

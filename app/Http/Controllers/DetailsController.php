@@ -58,8 +58,19 @@ class DetailsController extends Controller
                     DetailsController::corr_table_chart($details)
                 );
             case 'PA - MTO':
-                $errors[] = 'Tabla no terminada - ERROR 002';
-                return view('master.page.home', compact('errors'));
+                $details = DetailsController::mto_table($test['id'])->toArray();
+
+                return
+                    TableController::new_table
+                (
+                    'dashboard.title_mto_table', 
+                    'mto_table', 
+                    $details, 
+                    false, 
+                    '',
+                    true,
+                    DetailsController::mto_table_chart($details)
+                );
             case 'PA - Res Aislamiento':
 
             	$details = DetailsController::res_table($test['id'])->toArray();
@@ -100,7 +111,8 @@ class DetailsController extends Controller
     }
     private static function mto_table($test_id){
         return  DB::table('m_t_os')
-                    //->where('m_t_os.test_id', '=', $test_id)
+                    ->select('id', 'test_num', 'current', 'resw1', 'resw2', 'resw3', 'sf1', 'variance')
+                    ->where('m_t_os.test_id', '=', $test_id)
                     ->get();
     }
     private static function fp_table_charts($details){
@@ -116,7 +128,7 @@ class DetailsController extends Controller
         [
             'chart' => TableController::multi_bar
             (
-            	trans('charts.pf_high'),
+            	trans('charts.cap_high'),
             	[trans('charts.cap')],
             	[
             		['label' => $labels[0], 'values' => $cap[0]],
@@ -131,7 +143,7 @@ class DetailsController extends Controller
         [
             'chart' => TableController::multi_bar
             (
-            	trans('charts.pf_high'),
+            	trans('charts.pf_low'),
             	[trans('charts.fp_20')],
             	[
             		['label' => $labels[0], 'values' => $pf_20[0]],
@@ -146,7 +158,7 @@ class DetailsController extends Controller
         [
             'chart' => TableController::multi_bar
             (
-            	trans('dashboard.pf_low'),
+            	trans('charts.pf_high'),
             	[trans('charts.fp')],
             	[
             		['label' => $labels[0], 'values' => $pf[0]],
@@ -251,5 +263,29 @@ class DetailsController extends Controller
         return $charts;
     }
     private static function mto_table_chart($details){
+
+        foreach ($details as $detail) {
+            $labels[] = $detail->test_num;
+            $h1[] = $detail->resw1;
+            $h2[] = $detail->resw2;
+            $h3[] = $detail->resw3;
+        }
+
+        $charts[] = 
+            [
+                'chart' => TableController::multi_areaspline
+                (
+                    'Resistencia óhmica de devanado',
+                    $labels,
+                    [
+                        ['label' => 'H1 -H0', 'values' => $h1],
+                        ['label' => 'H2 -H0', 'values' => $h2],
+                        ['label' => 'H3 -H0', 'values' => $h3]
+                    ]
+                ),
+                'size' => 'xl12 l12 m12 s12' 
+            ];
+
+        return $charts;
     }
 }

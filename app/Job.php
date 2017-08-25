@@ -27,8 +27,8 @@ class Job extends Model
             //'created_at'        => $this->created_at,
             //'updated_at'   		=> $this->updated_at,
             'due_date'	        => $this->due_date,
-            'job_complete'	    => $this->job_complete,
-            'invoice_sent'      => $this->invoice_sent,
+            //'job_complete'	    => $this->job_complete,
+            //'invoice_sent'      => $this->invoice_sent,
             //'user_id' 			=> $this->user_id,
             //'asset_id'    		=> $this->asset_id,
         ];

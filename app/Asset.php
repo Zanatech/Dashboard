@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Asset extends Model
 {
@@ -42,5 +43,15 @@ class Asset extends Model
             //'created_at' => $this->created_at,
             //'updated_at'    => $this->updated_at,
         ];
+    }
+
+    public static function asset_tests($asset){
+
+        return DB::table('tests')
+            ->select('tests.id', 'test_group', 'result_group', 'test_status')
+            ->join('jobs', 'tests.job_id', '=', 'jobs.id')
+            ->join('assets', 'jobs.asset_id', '=', 'assets.id')
+            ->where('assets.id', '=', $asset)
+            ->get();
     }
 }

@@ -21,37 +21,6 @@
 	            </div>
 	        </div>
 	    </div>
-	    <div class="col s12 m4">
-	        <div class="card">
-	            <div class="card-content">
-	              <span class="card-title">Graficos de tendencia</span>
-	              <p>Rehacer lo graficos de tendencia en Seccion de [Test], de una forma
-	              mas limpia.</p>
-	            </div>
-	            <div class="card-action">
-	            </div>
-	        </div>
-	    </div>
-	    <div class="col s12 m4">
-	        <div class="card">
-	            <div class="card-content">
-	              <span class="card-title">Formularios de tablas</span>
-	              <p>Realizar los formularios de insercion, actualizacion y eliminacion de datos.
-	              [User, Client, Asset, Job, Test]</p>
-	            </div>
-	            <div class="card-action">
-	            </div>
-	        </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="card">
-            <div class="card-content">
-            <span class="card-title">Graficos Generados por Metodo</span>
-            </div>
-	    </div>
-
 
     </div>
 </section>

@@ -4,7 +4,7 @@ return [
         // General Interface
         'language'                  => 'Idioma',
         'log_out'                   => 'Cerrar Sesion',
-        'see_all'                   => 'Ver mas',
+        'see_all'                   => 'Ver más',
         'combobox_message'          => 'Selecciona una opcion',
 
         // Table titles
@@ -15,8 +15,8 @@ return [
 
         'title_res_table'           => 'Resistencia de Aislamiento',
         'title_fp_table'            => 'Tabla de Factor de Potencia',
-        'title_corr_table'          => 'Tabla de Corriente de Exitacion',
-        'title_mto_table'           => 'MTO',
+        'title_corr_table'          => 'Tabla de Corriente de Excitacion',
+        'title_mto_table'           => 'Tabla de Resistencia óhmica de devanado',
 
         // Tables
         'client'        => 
@@ -31,8 +31,8 @@ return [
                 'id'                    => 'ID',
                 'target_date'           => 'Fecha objetivo',
                 'due_date'              => 'Fecha entregado',
-                'complete'              => 'Trabajo completo',
-                'invoice_sent'          => 'Facutura envidad',
+                //'complete'              => 'Trabajo completo',
+                //'invoice_sent'          => 'Factura enviada',
         ],
         
         'asset'         =>
@@ -40,7 +40,7 @@ return [
                 'id'                 => 'ID',
                 'plant'              => 'Planta',
                 'substation'         => 'Subestacion',
-                'eq'                 => 'Tipo de EQ',
+                'eq'                 => 'Tipo de Equipo',
                 'name'               => 'Nombre',
         ],
 
@@ -70,6 +70,14 @@ return [
         'mto_table'      =>
         [
                 'id'                                    => 'ID',
+                'tap'                           => 'TAP',
+                'nameplate'                             => 'Tensión de la placa de características',
+                'h1h0'                                  => 'H1 - H0',
+                'h2h0'                                  => 'H2 - H0',
+                'h3h0'                                  => 'H3 - H0',
+                'read_stab'                             => 'Estabilidad de Lectura (%)',
+                'winding'                               => 'Diferencia de bobinado',
+
         ],
 
         'res_table'      =>

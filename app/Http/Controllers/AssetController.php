@@ -14,7 +14,7 @@ class AssetController extends Controller
             if(!Validations::is_Guest()){
 
                 if(!Validations::is_Admin()){
-                    $assets = Asset::user_assets(Validations::my_id())->toArray();
+                    $assets = Asset::user_assets(Validations::my_id());
                 }else{
                     $assets = Asset::all();
                 }
@@ -64,6 +64,12 @@ class AssetController extends Controller
                 );
 
                 $jobs = Asset::find($asset)->jobs;
+                
+                if (!is_null(TrendController::trans_trends($asset))) {
+                    $draw = true;
+                }else{
+                    $draw = false;
+                }
 
                 $tables[] = 
                 TableController::new_table
@@ -73,8 +79,8 @@ class AssetController extends Controller
                     $jobs, 
                     true, 
                     '/job/', 
-                    false,
-                    null
+                    $draw,
+                    TrendController::trans_trends($asset)
                 );
 
                 return view('master.page.table', compact('tables'));

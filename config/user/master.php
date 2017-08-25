@@ -23,6 +23,6 @@ return [
     'logout_method'     => null,
 
     'plugins' => [
-        'datatables' => true,
+        'datatables' => false,
     ],
 ];

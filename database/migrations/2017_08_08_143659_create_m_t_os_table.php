@@ -15,6 +15,15 @@ class CreateMTOsTable extends Migration
     {
         Schema::create('m_t_os', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('test_num');
+            $table->string('tap');
+            $table->integer('tap_volt')->nullable();
+            $table->double('current');
+            $table->double('resw1');
+            $table->double('resw2');
+            $table->double('resw3');
+            $table->double('sf1');
+            $table->double('variance');
             $table->integer('test_id');
             $table->timestamps();
         });

@@ -2,7 +2,7 @@
 
 	return [
 
-		'main_navigation'			=> 'Nevgacion Principal',
+		'main_navigation'			=> 'Navegacion Principal',
 		'home'						=> 'Inicio',
 		'client'					=> 'Clientes',
 		'job'						=> 'Trabajos',
