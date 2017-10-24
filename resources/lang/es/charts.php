@@ -24,5 +24,15 @@
 	'min'					=> 'Minutos',
 
 	// Corriente de Excitacion
+	'ma'					=> 'mA',
+	'watts'					=> 'Watts',
+	'fase_a'				=> 'Fase A',
+	'fase_b'				=> 'Fase B',
+	'fase_c'				=> 'Fase C',
 	// Resistencia ohmica de devanado
+
+	'mto_title'				=> 'Resistencia óhmica de devanado',
+	'h1h0'					=> 'H1 - H0',
+	'h2h0'					=> 'H2 - H0',
+	'h3h0'					=> 'H3 - H0',
 	];

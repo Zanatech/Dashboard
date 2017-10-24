@@ -7,7 +7,6 @@ use Charts;
 
 class TableController extends Controller
 {
-
   public static function new_table($table_title, $headers, $content, $had_link, $link, $reveal, $charts){
 
     if (is_object($content)) {
@@ -28,6 +27,23 @@ class TableController extends Controller
     $table['link'] = $link;
     $table['reveal'] = $reveal;
     $table['charts'] = $charts;
+
+    return $table;
+  }
+
+  public static function excelhtmltable($table_title, $content){
+    if (is_object($content)) {
+
+      foreach ($content as $object) {
+        $array[] = $object->array();
+      }
+        if (isset($array)) {
+          $table['content'] = $array;
+        }else{ $table['content'] = null;}
+
+    }else{ $table['content'] = $content;   }
+
+    $table['table_title'] = $table_title; 
 
     return $table;
   }

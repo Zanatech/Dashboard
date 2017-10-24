@@ -8,14 +8,12 @@
 		'job'						=> 'Trabajos',
 		'asset'						=> 'Activos',
 		'test'						=> 'Pruebas',
-		'create'					=> 'Formas de creacion',
-		'new_client'				=> 'Nuevo Cliente',
-		'new_job'					=> 'Nuevo Trabajo',
-		'new_asset'					=> 'Nuevo Activo',
-		'new_test'					=> 'Nueva Prueba',
+		'admin_panel'				=> 'Acciones de Administrador',
+		'panel'						=> 'Panel de Administrador',
 		'general'					=> 'Opciones Generales',
 		'profile'					=> 'Perfil',
-		'import'					=> 'Importar Archivo'
+		'import'					=> 'Importar Archivo',
+		'preview'					=> 'Mostar Excel en HTML',
 
 	];
 

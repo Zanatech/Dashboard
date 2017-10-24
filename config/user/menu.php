@@ -84,11 +84,18 @@ return [
                     'url'           =>  'tests',
                     'role_access'   =>  '0'
                 ],
+                [
+                    'text'          =>  'preview',
+                    'icon'          =>  'format_list_numbered',
+                    'icon_color'    =>  'teal',
+                    'url'           =>  'preview',
+                    'role_access'   =>  '1'
+                ],
             ]
         ],
         
-        [
-            'text'          =>  'create',
+        /*[
+            'text'          =>  'admin_panel',
             'icon'          =>  'expand_more',
             'icon_color'    =>  'teal',
             'url'           =>  '#',
@@ -96,49 +103,11 @@ return [
             'submenu'       => 
             [
                 [
-                    'text'          =>  'new_client',
-                    'icon'          =>  'crop_square',
+                    'text'          =>  'panel',
+                    'icon'          =>  'android',
                     'icon_color'    =>  'teal',
-                    'url'           =>  'create_client',
+                    'url'           =>  'panel',
                     'role_access'   =>  '1'
-                ],
-                [
-                    'text'          =>  'new_job',
-                    'icon'          =>  'crop_square',
-                    'icon_color'    =>  'teal',
-                    'url'           =>  'create_job',
-                    'role_access'   =>  '1'
-                ],
-                [
-                    'text'          =>  'new_asset',
-                    'icon'          =>  'crop_square',
-                    'icon_color'    =>  'teal',
-                    'url'           =>  'create_asset',
-                    'role_access'   =>  '1'
-                ],
-                [
-                    'text'          =>  'new_test',
-                    'icon'          =>  'crop_square',
-                    'icon_color'    =>  'teal',
-                    'url'           =>  'create_test',
-                    'role_access'   =>  '1'
-                ],
-            ]
-        ],
-        [
-            'text'          =>  'general',
-            'icon'          =>  'expand_more',
-            'icon_color'    =>  'teal',
-            'url'           =>  '#',
-            'role_access'   =>  '0',
-            'submenu'       => 
-            [
-                [        
-                    'text'          =>  'profile',
-                    'icon'          =>  'account_circle',
-                    'icon_color'    =>  'teal',
-                    'url'           =>  '#',
-                    'role_access'   =>  '0'
                 ],
                 [        
                     'text'          =>  'import',
@@ -148,6 +117,6 @@ return [
                     'role_access'   =>  '1'
                 ],
             ]
-        ],
+        ],*/
     ]
 ];

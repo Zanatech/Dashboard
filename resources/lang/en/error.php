@@ -2,13 +2,13 @@
 	
 	return [
 		'404'				=> '404',
-		'404_message'		=> 'It seems that the page you are looking for does not exist.',
+		'404_message'		=> 'Parece que la pagina que buscas no existe',
 
-		'guest_title'		=> 'Guest?',
-		'guest_access'		=> 'It looks like you have not logged in, please Log in',
+		'guest_title'		=> 'Invitado?',
+		'guest_access'		=> 'Parece que no has logueado, Inicia sesion para hacerlo',
 
-		'denied_title'		=> 'Access Denied',
-		'denied_message'	=> 'You do not have the necessary level to access this content'
+		'denied_title'		=> 'Acceso Denegado',
+		'denied_message'	=> 'Parece que no tienes el permiso necesario para acceder a este contenido'
 
 	];
 

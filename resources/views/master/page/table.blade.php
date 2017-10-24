@@ -56,7 +56,7 @@
 							@if($table['reveal'])
 							<i class="material-icons right">close</i>
 							@endif
-						</span>
+						</span>	
 
 						<!-- Table -->
 						@if ($table['main'])

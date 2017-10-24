@@ -7,6 +7,24 @@ use DB;
 
 class Asset extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'plant', 'substation', 'location', 'eq_type', 'asset_name',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'user_id', 'id',
+    ];
+
     public function jobs(){
     	return $this->hasMany(Job::class);
     }

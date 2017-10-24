@@ -26,6 +26,14 @@
 	        <!-- DataTables -->
 	        <link rel="stylesheet" href="//cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.css">
     	@endif
+    	@if(config('user.master.plugins.fullcalendar'))
+	        <!-- FullCalendar -->
+	        <link rel="stylesheet" href="asset{{ 'css/fullcalendar.min.css' }}">
+	        <link rel="stylesheet" href="asset{{ 'css/fullcalendar.print.min.css' }}">
+    	@endif
+
+    	<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
+		<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
 
     	@yield('Custom_CSS')
 
@@ -44,16 +52,31 @@
 			@yield('body')
 		</div>
 
-		<script src="{{ asset('js/jquery-2.1.1.min.js') }}"></script>
+		<script src="{{ asset('js/jquery-ui.min.js') }}"></script>
 		<script src="{{ asset('js/materialize.js') }}"></script>
-        <script src="{{ asset('js/legacy.js') }}"></script>
-        <script src="{{ asset('js/picker.js') }}"></script>
-        <script src="{{ asset('js/picker.date.js') }}"></script>
-        <script src="{{ asset('js/picker.time.js') }}"></script>
+        <script src="{{ asset('js/moment.min.js') }}"></script>
+
+        <script src="{{ asset('js/editableTable.js') }}"></script>
+
 		@if(config('user.master.plugins.datatables'))
 		    <!-- DataTables -->
 		    <script src="//cdn.datatables.net/v/bs/dt-1.10.13/datatables.min.js"></script>
 		@endif	
+
+		@if(config('user.master.plugins.fullcalendar'))
+		    <!-- FullCalendar -->
+		    <script src="asset('js/fullcalendar.min.js') }}"></script>
+		@endif
+
+		@if(config('user.master.plugins.picker'))
+		    <!-- Picker -->
+	        <script src="{{ asset('js/legacy.js') }}"></script>
+	        <script src="{{ asset('js/picker.js') }}"></script>
+	        <script src="{{ asset('js/picker.date.js') }}"></script>
+	        <script src="{{ asset('js/picker.time.js') }}"></script>
+		@endif
+
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
         <script src="{{ asset('js/init.js') }}"></script>
 		@yield('Custom_JS')
 	</body>

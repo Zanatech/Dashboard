@@ -1,3 +1,13 @@
+
+// Admin Panel
+	- Crear Objetos
+	- Modificar Objetos
+	- Eliminar Objetos
+
+// Perfil de Usuario
+	- Resumen de estado
+
+
 Master
 	- page
 		- create_form
@@ -37,3 +47,19 @@ Translate
 	- error
 	- menu
 	
+
+	//Relaciones de 	Lang <--> View <--> Config
+
+	Lang			View			Config
+	--------------------------------------
+	menu			sidebar			menu
+	----			master 			master
+	----			charts			----
+	form 			fields			----
+	----			header			master
+	----			auth_form		----
+	----			message_box		----
+	dashbaord 		page			menu
+	admin_panel		admin_panel		admin_panel
+	form 			create_form		----
+	dashbaord 		table			----

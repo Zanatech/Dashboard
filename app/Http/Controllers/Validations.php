@@ -8,13 +8,14 @@ use Auth;
 
 class Validations extends Controller
 {
+
     public static function is_Connected(){
 
     	try {
             DB::connection()->getPdo();
         } catch (\Exception $e) {
 
-            return FALSE;
+            return view('errors.login');
         }
 
         return TRUE;
@@ -23,7 +24,7 @@ class Validations extends Controller
     public static function is_Guest(){
 
 	    if (Auth::Guest()) {
-	        return TRUE;
+	        return view('errors.letlogin');
 	    }
 
 	    return FALSE;

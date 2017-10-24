@@ -1,7 +1,3 @@
-$(document).ready(function(){ 
-    $("#preloader").hide();
-    $("#container").show();
-});
 
 (function($){
   $(function(){
@@ -12,6 +8,26 @@ $(document).ready(function(){
 })(jQuery); // end of jQuery name space
 
 $(document).ready(function() {
+
+    $("#preloader").hide();
+    $("#container").show();
+
+    $('select').material_select();
+
+    $('table.datatable').DataTable( {
+        "paging":   false,
+        "ordering": true,
+        "info":     false,
+        'bFilter':  false,
+        "columnDefs": [
+            {"visible" : false, "targets": 0}
+        ]
+    } );
+        
+    $( '.datepicker' ).pickadate({
+
+    }) 
+
     $('table.infodata').DataTable( {
         "paging":   false,
         "ordering": false,
@@ -20,24 +36,11 @@ $(document).ready(function() {
     "columnDefs": [
       {"visible" : false, "targets": 0}
     ]
+
     } );
-} );
+});
 
-$(document).ready(function() {
-    $('table.datatable').DataTable( {
-        "paging":   false,
-        "ordering": true,
-        "info":     false,
-        'bFilter':  false,
-		"columnDefs": [
-			{"visible" : false, "targets": 0}
-		]
-    } );
-} );
+$('#editable').editableTableWidget({
+    cloneProperties: ['background', 'border', 'outline']
+});
 
-$( '.datepicker' ).pickadate({
-})  
-
- $(document).ready(function() {
-    $('select').material_select();
-  });

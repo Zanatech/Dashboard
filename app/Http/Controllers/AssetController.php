@@ -9,127 +9,106 @@ use App\User;
 class AssetController extends Controller
 {
     public function showall(){
+        if(!Validations::is_Admin()){
+            $assets = Asset::user_assets(Validations::my_id());
+        }else{
+            $assets = Asset::all();
+        }
 
-        if (Validations::is_Connected()) {
-            if(!Validations::is_Guest()){
+        $tables[] = 
+        TableController::new_table
+        (
+            'dashboard.title_asset', 
+            'asset', 
+            $assets, 
+            true, 
+            '/asset/', 
+            false,
+            null
+        );
 
-                if(!Validations::is_Admin()){
-                    $assets = Asset::user_assets(Validations::my_id());
-                }else{
-                    $assets = Asset::all();
-                }
-
-                $tables[] = 
-                TableController::new_table
-                (
-                    'dashboard.title_asset', 
-                    'asset', 
-                    $assets, 
-                    true, 
-                    '/asset/', 
-                    false,
-                    null
-                );
-
-                return view('master.page.table', compact('tables'));
-
-            }else {return view('errors.letlogin'); }
-        }else { return back(); }
-
+        return view('master.page.table', compact('tables'));
     }
 
     public function jobs($asset){
+        if (!Validations::is_Admin()) {
+            if (!Asset::is_mine($asset, Validations::my_id())) {
+                return back();
+            }
+        }
 
-        if (Validations::is_Connected()) {
-            if(!Validations::is_Guest()){
+        $array_assets[] = Asset::find($asset)->array();
 
-                if (!Validations::is_Admin()) {
-                    if (!Asset::is_mine($asset, Validations::my_id())) {
-                        return back();
-                    }
-                }
+        $tables[] = 
+        TableController::new_table
+        (
+            'dashboard.title_asset', 
+            'asset', 
+            $array_assets, 
+            false, 
+            '', 
+            false,
+            null
+        );
 
-                $array_assets[] = Asset::find($asset)->array();
+        $jobs = Asset::find($asset)->jobs;
+        
+        if (!is_null(TrendController::trans_trends($asset))) {
+            $draw = true;
+        }else{
+            $draw = false;
+        }
 
-                $tables[] = 
-                TableController::new_table
-                (
-                    'dashboard.title_asset', 
-                    'asset', 
-                    $array_assets, 
-                    false, 
-                    '', 
-                    false,
-                    null
-                );
+        $tables[] = 
+        TableController::new_table
+        (
+            'dashboard.title_job', 
+            'job', 
+            $jobs, 
+            true, 
+            '/job/', 
+            $draw,
+            TrendController::trans_trends($asset)
+        );
 
-                $jobs = Asset::find($asset)->jobs;
-                
-                if (!is_null(TrendController::trans_trends($asset))) {
-                    $draw = true;
-                }else{
-                    $draw = false;
-                }
-
-                $tables[] = 
-                TableController::new_table
-                (
-                    'dashboard.title_job', 
-                    'job', 
-                    $jobs, 
-                    true, 
-                    '/job/', 
-                    $draw,
-                    TrendController::trans_trends($asset)
-                );
-
-                return view('master.page.table', compact('tables'));
-                
-            }else {return view('errors.letlogin'); }
-        }else { return back(); }
+        return view('master.page.table', compact('tables'));
     }
 
     public function new(){
-        if (Validations::is_Connected()) {
-            if(!Validations::is_Guest()){
+        if (!Validations::is_Admin()) {
+            return back();
+        }else{
 
-                if (!Validations::is_Admin()) {
-                    return back();
+            $create_forms = config('user.create_form');
+            $content = $create_forms['create_asset'];
+
+            foreach (User::non_admins() as $user) {
+                if (is_object($user)) {
+                    $data[] = 
+                    [
+                        'option_name'    =>  $user->name,
+                        'option_value'   =>  $user->id,
+                    ];
                 }else{
-
-                    $create_forms = config('user.create_form');
-                    $content = $create_forms['create_asset'];
-
-                    foreach (User::non_admins() as $user) {
-                        if (is_object($user)) {
-                            $data[] = 
-                            [
-                                'option_name'    =>  $user->name,
-                                'option_value'   =>  $user->id,
-                            ];
-                        }else{
-                            $data[] = 
-                            [
-                                'option_name'    =>  $user['name'],
-                                'option_value'   =>  $user['id'],
-                            ];
-                        }
-                    }
-
-                    $content['fields'][] = [
-                            'name'      => 'user_id',
-                            'text'      => 'create_asset_user',
-                            'type'      => 'combobox',
-                            'icon'      => 'info',
-                            'size'      => 'm6 s12',
-                            'data'      => $data,
-                        ];
-
-                    return view('master.page.create_form', compact('content'));
+                    $data[] = 
+                    [
+                        'option_name'    =>  $user['name'],
+                        'option_value'   =>  $user['id'],
+                    ];
                 }
+            }
 
-            }else {return view('errors.letlogin'); }
-        }else { return back(); }
+            $content['fields'][] = [
+                    'name'      => 'user_id',
+                    'text'      => 'create_asset_user',
+                    'type'      => 'combobox',
+                    'icon'      => 'info',
+                    'size'      => 'm6 s12',
+                    'data'      => $data,
+                ];
+
+            return view('master.page.create_form', compact('content'));
+        }
     }
 
     public function save(){

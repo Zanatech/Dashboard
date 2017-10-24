@@ -24,5 +24,7 @@ return [
 
     'plugins' => [
         'datatables' => false,
+        'fullcalendar' => true,
+        'picker' => true,
     ],
 ];

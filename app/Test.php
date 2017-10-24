@@ -7,6 +7,24 @@ use DB;
 
 class Test extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+    'test_group', 'result_group', 'test_status', 'comments', 'deficiencies',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'id', 'job_id',
+    ];
+
     public function asset(){
     	return $this->belongTo(Job::class);
     }

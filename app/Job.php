@@ -7,6 +7,24 @@ use DB;
 
 class Job extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'job_name', 'target_date', 'due_date', 'job_complete', 'invoice_sent',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'id', 'user_id', 'asset_id',
+    ];
+
     public function tests(){
     	return $this->hasMany(Test::class);
     }

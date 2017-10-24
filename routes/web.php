@@ -13,6 +13,11 @@ Route::get('home/{locale}', function ($locale) {
     return view('home');
 });
 
+// Admin Panel
+
+Route::get('/panel', 'AdminPanel@home')->name('panel');
+Route::get('/panel/users', 'AdminPanel@showusers')->name('users');
+
 // Links for Client
 Route::get('/clients', 'UserController@showall')->name('clients');
 Route::get('/client/{client}', 'UserController@assets');
@@ -39,4 +44,6 @@ Route::post('/save_test', 'TestController@save');
 
 // Links for Import_File
 Route::get('/import', 'ImporterController@showform');
-Route::get('/import/file', 'ImporterController@import');
+Route::post('/import/file', 'ImporterController@import');
+Route::get('/preview', 'ImporterController@previewform');
+Route::post('/preview/file', 'ImporterController@preview');

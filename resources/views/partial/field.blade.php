@@ -14,7 +14,7 @@
 
       <div class="btn">
         <span>{{ trans('form.'.$field['text']) }}</span>
-        <input type="file">
+        <input type="file" name="file_name">
       </div>
 
       <div class="file-path-wrapper">

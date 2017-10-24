@@ -3,25 +3,25 @@
 return [
 
 //  Forms Messages
-    'login_message'                     => 'Sign in to start your session',
-    'register_message'                  => 'Register a new membership',
-    'email_message'                     => 'Send Password Reset Link',
-    'reset_message'                     => 'Reset Password',
+    'login_message'                     => 'Inicia sesion para revisar tus datos',
+    'register_message'                  => 'Registra un nuevo miembro',
+    'email_message'                     => 'Solicita un cambio de contraseña',
+    'reset_message'                     => 'Reinicia tu contraseña',
 
 //  Forms Buttons
-    'sign_in'                           => 'Sign In',
-    'register'							=> 'Register',
-    'reset_password'					=> 'Reset password',
-    'send_email'						=> 'Send email',
+    'sign_in'                           => 'Iniciar',
+    'register'							=> 'Registrar',
+    'reset_password'					=> 'Enviar solicitud',
+    'send_email'						=> 'Enviar correo',
 
 //  Forms Links
-    'i_forgot_my_password'             	=> 'I forgot my password',
-    'register_a_new_membership'         => 'Register a new membership',
-    'i_already_had_an_account'			=> 'I already had an account',
+    'i_forgot_my_password'             	=> 'Has olvidado tu contraseña?',
+    'register_a_new_membership'         => 'Registra un nuevo miembro',
+    'i_already_had_an_account'			=> 'Ya poseo una cuenta',
 
 //  Forms Fields
-    'email'                             => 'Email',
-    'password'                          => 'Password',
-    'retype'							=> 'Retype Password',
-    'full_name'							=> 'Full names'
+    'email'                             => 'Correo',
+    'password'                          => 'Contraseña',
+    'retype'							=> 'Reescribe la contraseña',
+    'full_name'							=> 'Nombre completo'
 ];

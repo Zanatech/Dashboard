@@ -41,5 +41,11 @@
 		'import_title'					=> 'Importar archivos CSV',
 		'import_message'				=> 'Archivos CSV o XLSX se importan directamente a la base de datos, para ser almacenados y consultados luego como tabla y/o graficos',
 		'import_file'					=> 'Buscar Archivo',
-		'import_button'					=> 'Importar'
+		'import_button'					=> 'Importar',
+
+		//Preview Form
+		'preview_title'					=> 'Vista Previa de archivos CSV',
+		'preview_message'				=> 'Mira el contenido de los archivos CSV o XLSX, en un formato de tablas de HTML antes de ingresarlo a la base de datos',
+		'preview_file'					=> 'Buscar Archivo',
+		'preview_button'				=> 'Vista Previa'
 	];

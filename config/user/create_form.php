@@ -194,4 +194,24 @@
                     ],
             ],
 
+        'preview'     =>
+            [
+                'icon'          => 'format_list_numbered',
+                'title'         => 'preview_title',
+                'message'       => 'preview_message',
+                'action'        => 'preview/file',
+                'button_message'=> 'preview_button',
+                'has_file'      => true,
+                'fields'        => 
+                    [
+                        [
+                            'name'      => 'file',
+                            'text'      => 'preview_file',
+                            'type'      => 'file',
+                            'icon'      => 'import_export',
+                            'size'      => 'm12 s12',
+                        ],
+                    ],
+            ],
+
 	];
